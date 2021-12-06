@@ -3,10 +3,10 @@ class Game {
         this.ctx = ctx
         
         this.background = new Background(ctx)
+        this.player = new Player(ctx)
 
         this.intervalId = undefined
         this.fps = 1000/60
-
     }
 
     start(){
@@ -17,7 +17,6 @@ class Game {
                 this.move()
             }, this.fps)
         }
-
     }
 
     clear() {
@@ -25,14 +24,17 @@ class Game {
       }
 
     move(){
-        this.background.move() 
+        this.background.move()
+        this.player.move() 
     }
 
     draw(){
         this.background.draw()
+        this.player.draw()
     }
 
     setupListeners(event) {
         this.background.setupListeners(event)
+        this.player.setupListeners(event)
       }
 }
