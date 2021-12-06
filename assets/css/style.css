@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#start-button{
+    position: absolute;
+    cursor: pointer;
+}
+#canvas {
+    border: 1px solid black;
+}
