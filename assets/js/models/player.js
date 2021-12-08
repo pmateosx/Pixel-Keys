@@ -2,15 +2,15 @@ class Player {
     constructor(ctx){
         this.ctx = ctx
 
-        this.x = 0
-        this.y = 0
+        this.x = 380
+        this.y = 280
 
-        this.speed = 2
+        this.speed = 1.5
         this.vx = 0
         this.vy = 0
 
-        this.width = 18*2
-        this.height = 39*2
+        this.width = 20 * 1.5
+        this.height = 45 * 1.5
 
         this.img = new Image()
         this.img.src = 'assets/images/player/playerSplite.png'
@@ -139,5 +139,13 @@ class Player {
             this.isRunning = false
             this.xFrame = 0
         }
+      }
+
+      //checker para ver si chocamos con la key
+      collidesWith(keyPiece){
+          return this.x < keyPiece.x + keyPiece.width &&
+          this.x + this.width > keyPiece.x &&
+          this.y < keyPiece.y + keyPiece.height &&
+          this.y + this.height > keyPiece.y
       }
 }

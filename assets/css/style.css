@@ -7,6 +7,13 @@ body{
     position: absolute;
     cursor: pointer;
 }
+
 #canvas {
+    margin: 0 auto;
+    margin-top: 2rem;
     border: 1px solid black;
+    image-rendering: pixelated;
 }
+
+
+

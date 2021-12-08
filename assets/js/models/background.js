@@ -3,10 +3,10 @@ class Background {
         this.ctx = ctx
         // esto deberia estar condicionado por el inicio del personaje
         // podemos hacerlo con this.player.x?
-        this.x = 0
-        this.y = 0
+        this.x = -540
+        this.y = -1609
 
-        this.speed = 1.5
+        this.speed = 2
         this.vx = 0
         this.vy = 0
 
@@ -17,8 +17,8 @@ class Background {
             this.img.isReady = true
         }
 
-        this.width = this.img.width
-        this.height = this.img.height
+        this.width = this.img.width * 1.5
+        this.height = this.img.height * 1.5
 
         this.movements = {
             up: false,
@@ -102,4 +102,5 @@ class Background {
             this.y += this.vy
 
           }
+
 }
