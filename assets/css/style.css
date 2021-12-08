@@ -13,6 +13,8 @@ body{
     margin-top: 2rem;
     border: 1px solid black;
     image-rendering: pixelated;
+    width: 800px;
+    height: 500px;
 }
 
 
