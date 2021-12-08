@@ -4,7 +4,7 @@ class keyPiece {
         this.x = x
         this.y = y
 
-        this.speed = 4
+        this.speed = 6
         this.vx = 0
         this.vy = 0
 

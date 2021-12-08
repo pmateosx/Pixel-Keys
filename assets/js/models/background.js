@@ -6,12 +6,12 @@ class Background {
     this.x = 0
     this.y = 0
 
-    this.speed = 4
+    this.speed = 6
     this.vx = 0
     this.vy = 0
 
     this.img = new Image()
-    this.img.src = './assets/images/backgrounds/plainMap.png'
+    this.img.src = './assets/images/backgrounds/poketest2.png'
     this.img.isReady = false
     this.img.onload = () => {
       this.img.isReady = true
