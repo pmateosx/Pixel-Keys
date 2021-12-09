@@ -8,9 +8,10 @@ class Player {
         this.x = (this.ctx.canvas.width / 2) - (this.width/2)
         this.y = (this.ctx.canvas.height / 2) - (this.height/2)
 
-        this.speed = 3
+        //pendiente de eliminar
+       /*  this.speed = 3
         this.vx = 0
-        this.vy = 0
+        this.vy = 0 */
 
         this.img = new Image()
         this.img.src = './assets/images/player/playerSplite.png'
@@ -66,7 +67,8 @@ class Player {
     }
 
     move(){
-        if (!this.movements.right && !this.movements.left) {
+      //pendiente de eliminar 
+/*         if (!this.movements.right && !this.movements.left) {
             this.vx = 0
           }
           if (!this.movements.up && !this.movements.down) {
@@ -86,9 +88,9 @@ class Player {
           }
           if (this.movements.down) {
               this.vy = this.speed
-          }
+          } */
 
-          if (this.x <= 0) {
+/*           if (this.x <= 0) {
             this.x = 0
           }
           if (this.x + this.width >= this.ctx.canvas.width) {
@@ -101,7 +103,7 @@ class Player {
 
           if (this.y + this.height >= this.ctx.canvas.height) {
             this.y = this.ctx.canvas.height - this.height
-          }
+          } */
 
           if(this.isRunning){
             if (this.ticks % 10 === 0) {

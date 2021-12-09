@@ -73,6 +73,10 @@ class keyPiece {
       }
 
     move(){
+        this.x += this.vx
+        this.y += this.vy
+        //console.log(`sto es x ${this.x} esto es y ${this.y}`);
+
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0
         }
@@ -93,9 +97,6 @@ class keyPiece {
         if (this.movements.down) {
             this.vy = -this.speed
         }
-
-        this.x += this.vx
-        this.y += this.vy
 
         if(this.ticks % 10 === 0) {
             this.xFrame++

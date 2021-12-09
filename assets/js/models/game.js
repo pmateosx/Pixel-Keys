@@ -5,13 +5,17 @@ class Game {
         this.background = new Background(ctx)
         this.player = new Player(ctx)
         this.keyPiece = [
-            new keyPiece(ctx, 2720, 750),
+            //keys en el mapa de 0
+/*          new keyPiece(ctx, 2720, 750),
             new keyPiece(ctx, 999, 3800),
-            new keyPiece(ctx, 2800, 2000)
+            new keyPiece(ctx, 2800, 2000) */
+            new keyPiece(ctx, -750, 100),
+            new keyPiece(ctx, 950, -1800),
+            new keyPiece(ctx, 950, -3000)
         ]
         this.enemy = [
-            new Enemy(ctx, 150, 150),
-            new Enemy(ctx, 250, 350)
+            new Enemy(ctx, 450, 350),
+            new Enemy(ctx, 450, 450)
         ]
 
         this.intervalId = undefined
@@ -53,15 +57,15 @@ class Game {
         this.ctx.fillRect(20, 15, 250, 60)
         this.ctx.restore()
         this.ctx.font = 'bold 40px monospace'
-        this.ctx.fillText(`Keys ${this.keysTaken}/ 3`, 40, 60)
+        this.ctx.fillText(`Keys ${this.keysTaken}/3`, 40, 60)
     }
 
     draw() {
         this.background.draw()
-        this.player.draw()
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.enemy.forEach(enemy => enemy.draw())
         this.drawKeyPieces()
+        this.player.draw()
     }
 
     setupListeners(event) {

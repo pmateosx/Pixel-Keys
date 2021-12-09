@@ -4,8 +4,8 @@ class Enemy {
         this.x = x
         this.y = y 
 
-        this.width = 60*2
-        this.height = 120*2
+        this.width = 35 * 5
+        this.height = 43 * 5
 
         this.speed = 6
         this.vx = 0
@@ -14,17 +14,17 @@ class Enemy {
         this.health = 100
 
         this.img = new Image()
-        this.img.src = '#'
+        this.img.src = './assets/images/enemy/test2.png'
         this.img.isReady = false
         this.img.onload = () => {
             this.img.isReady = true
         }
 
-        this.horizontalFrames = 4
-        this.verticalFrames = 1
+        this.horizontalFrames = 24
+        this.verticalFrames = 17
 
         this.xFrame = 0 
-        this.yFrame = 0 
+        this.yFrame = 1
 
         this.ticks = 0
 
@@ -37,18 +37,19 @@ class Enemy {
     }
 
     draw(){
+
         if(this.img.isReady){
-            this.ctx.drawImage(
-                    this.img,
-                    (this.img.width * this.xFrame) / this.horizontalFrames,
-                    (this.img.height * this.yFrame) / this.verticalFrames,
-                    this.img.width / this.horizontalFrames,
-                    this.img.height * this.verticalFrames,
-                    this.x,
-                    this.y,
-                    this.width,
-                    this.height
-            )
+          this.ctx.drawImage(
+            this.img,
+            (this.img.width * this.xFrame) / this.horizontalFrames,
+            (this.img.height * this.yFrame) / this.verticalFrames,
+            this.img.width / this.horizontalFrames,
+            this.img.height / this.verticalFrames,
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        )
             this.ticks++
 
         }
@@ -76,7 +77,6 @@ class Enemy {
       }
 
       move(){
-        
         this.x += this.vx
         this.y += this.vy
 
@@ -101,9 +101,7 @@ class Enemy {
             this.vy = -this.speed
         }
 
-     
-
-        if(this.ticks % 10 === 0) {
+        if(this.ticks % 9 === 0) {
             this.xFrame++
             if(this.xFrame >= (this.horizontalFrames)){
                 this.xFrame = 0

@@ -3,8 +3,8 @@ class Background {
     this.ctx = ctx
     // esto deberia estar condicionado por el inicio del personaje
     // podemos hacerlo con this.player.x?
-    this.x = 0
-    this.y = 0
+    this.x = -1794
+    this.y = -3698
 
     this.speed = 6
     this.vx = 0
@@ -37,6 +37,7 @@ class Background {
           this.height
         )
       }
+      console.log(`esto es mi x ${this.x} esto es mi y ${this.y}`);
     }
 
   setupListeners(event) {
@@ -64,7 +65,7 @@ class Background {
 
       this.x += this.vx
       this.y += this.vy
-      
+
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0
         }
