@@ -76,6 +76,10 @@ class Enemy {
       }
 
       move(){
+        
+        this.x += this.vx
+        this.y += this.vy
+
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0
         }
@@ -97,8 +101,7 @@ class Enemy {
             this.vy = -this.speed
         }
 
-        this.x += this.vx
-        this.y += this.vy
+     
 
         if(this.ticks % 10 === 0) {
             this.xFrame++

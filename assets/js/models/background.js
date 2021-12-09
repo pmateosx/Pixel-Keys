@@ -27,17 +27,17 @@ class Background {
     }
   }
 
-  draw(){
-    if (this.img.isReady) {
-      this.ctx.drawImage(
-        this.img,
-        this.x,
-        this.y,
-        this.width,
-        this.height
-      )
+    draw(){
+      if (this.img.isReady) {
+        this.ctx.drawImage(
+          this.img,
+          this.x,
+          this.y,
+          this.width,
+          this.height
+        )
+      }
     }
-  }
 
   setupListeners(event) {
       const status = event.type === 'keydown'
@@ -61,6 +61,10 @@ class Background {
     }
 
     move() {
+
+      this.x += this.vx
+      this.y += this.vy
+      
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0
         }
@@ -97,8 +101,6 @@ class Background {
             this.y = 0
         }
 
-        this.x += this.vx
-        this.y += this.vy
 
       }
 }

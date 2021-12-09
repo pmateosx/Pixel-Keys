@@ -66,9 +66,6 @@ class Player {
     }
 
     move(){
-/*         this.x += this.vx
-        this.y += this.vy */
-
         if (!this.movements.right && !this.movements.left) {
             this.vx = 0
           }
