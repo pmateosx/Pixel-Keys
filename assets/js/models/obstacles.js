@@ -1,32 +1,25 @@
-class Enemy {
-    constructor(ctx, x, y){
+class Obstacles {
+    constructor(ctx, x, y, type){
         this.ctx = ctx
+
+        this.type = type
+
         this.x = x
         this.y = y 
 
-        this.width = 35 * 5
-        this.height = 43 * 5
+        this.width = 200
+        this.height = 300
 
         this.speed = 6
         this.vx = 0
         this.vy = 0
 
-        this.health = 100
-
         this.img = new Image()
-        this.img.src = './assets/images/enemy/test2.png'
+        this.img.src = `./assets/images/obstacles/${this.type}.png`
         this.img.isReady = false
         this.img.onload = () => {
             this.img.isReady = true
         }
-
-        this.horizontalFrames = 24
-        this.verticalFrames = 17
-
-        this.xFrame = 0 
-        this.yFrame = 1
-
-        this.ticks = 0
 
         this.movements = {
             up: false,
@@ -36,21 +29,15 @@ class Enemy {
         }
     }
 
-    draw(){
-        if(this.img.isReady){
-          this.ctx.drawImage(
-            this.img,
-            (this.img.width * this.xFrame) / this.horizontalFrames,
-            (this.img.height * this.yFrame) / this.verticalFrames,
-            this.img.width / this.horizontalFrames,
-            this.img.height / this.verticalFrames,
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        )
-            this.ticks++
-
+    draw() {
+        if (this.img.isReady) {
+            this.ctx.drawImage(
+                this.img,
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            )
         }
     }
 
@@ -100,9 +87,9 @@ class Enemy {
             this.vy = -this.speed
         }
 
-        if(this.ticks % 7 === 0) {
+        if(this.ticks % 10 === 0) {
             this.xFrame++
-            if(this.xFrame >= (this.horizontalFrames)){
+            if(this.xFrame >= (this.horizontalFrames -1)){
                 this.xFrame = 0
             }
         }

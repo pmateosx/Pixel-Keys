@@ -75,7 +75,6 @@ class keyPiece {
     move(){
         this.x += this.vx
         this.y += this.vy
-        //console.log(`sto es x ${this.x} esto es y ${this.y}`);
 
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0

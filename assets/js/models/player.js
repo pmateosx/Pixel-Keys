@@ -5,13 +5,10 @@ class Player {
         this.width = 20 * 3
         this.height = 45 * 3
 
+        this.health = 100
+
         this.x = (this.ctx.canvas.width / 2) - (this.width/2)
         this.y = (this.ctx.canvas.height / 2) - (this.height/2)
-
-        //pendiente de eliminar
-       /*  this.speed = 3
-        this.vx = 0
-        this.vy = 0 */
 
         this.img = new Image()
         this.img.src = './assets/images/player/playerSplite.png'
@@ -64,47 +61,10 @@ class Player {
           )
           this.ticks++
       }
+      console.log(`Vida: ${this.health}`);
     }
 
     move(){
-      //pendiente de eliminar 
-/*         if (!this.movements.right && !this.movements.left) {
-            this.vx = 0
-          }
-          if (!this.movements.up && !this.movements.down) {
-            this.vy = 0
-          }
-      
-          if (this.movements.right) {
-            this.vx = this.speed
-          }
-
-          if (this.movements.left) {
-            this.vx = -this.speed
-          }
-      
-          if (this.movements.up) {
-              this.vy = -this.speed
-          }
-          if (this.movements.down) {
-              this.vy = this.speed
-          } */
-
-/*           if (this.x <= 0) {
-            this.x = 0
-          }
-          if (this.x + this.width >= this.ctx.canvas.width) {
-            this.x = this.ctx.canvas.width - this.width
-          }
-      
-          if (this.y <= 0) {
-            this.y = 0
-          }
-
-          if (this.y + this.height >= this.ctx.canvas.height) {
-            this.y = this.ctx.canvas.height - this.height
-          } */
-
           if(this.isRunning){
             if (this.ticks % 10 === 0) {
                 this.xFrame++
@@ -146,9 +106,11 @@ class Player {
 
       //checker para ver si chocamos con la key
       collidesWith(keyPiece){
-          return this.x < keyPiece.x + keyPiece.width &&
-          this.x + this.width > keyPiece.x &&
-          this.y < keyPiece.y + keyPiece.height &&
-          this.y + this.height > keyPiece.y
+          return (
+            this.x < (keyPiece.x + keyPiece.width - 30) &&
+            this.x + this.width > (keyPiece.x + 50) &&
+            this.y < (keyPiece.y + keyPiece.height -40) &&
+            this.y + this.height > (keyPiece.y - 50)
+          )
       }
 }

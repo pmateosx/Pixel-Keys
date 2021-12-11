@@ -5,17 +5,19 @@ class Game {
         this.background = new Background(ctx)
         this.player = new Player(ctx)
         this.keyPiece = [
-            //keys en el mapa de 0
-/*          new keyPiece(ctx, 2720, 750),
-            new keyPiece(ctx, 999, 3800),
-            new keyPiece(ctx, 2800, 2000) */
             new keyPiece(ctx, -750, 100),
             new keyPiece(ctx, 950, -1800),
             new keyPiece(ctx, 950, -3000)
         ]
+
         this.enemy = [
             new Enemy(ctx, 450, 350),
-            new Enemy(ctx, 450, 450)
+            new Enemy(ctx, 450, 450),
+        ]
+
+        this.obstacles = [
+            new Obstacles(ctx, 650, -250, 'arbol'),
+            new Obstacles(ctx, 350, -650, 'arbol')
         ]
 
         this.intervalId = undefined
@@ -44,6 +46,7 @@ class Game {
         this.player.move() 
         this.moveKeys()
         this.enemy.forEach(enemy => enemy.move())
+        this.obstacles.forEach(obstacles => obstacles.move())
     }
 
     moveKeys() {
@@ -64,8 +67,10 @@ class Game {
         this.background.draw()
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.enemy.forEach(enemy => enemy.draw())
+        this.obstacles.forEach(obstacles => obstacles.draw())
         this.drawKeyPieces()
         this.player.draw()
+       
     }
 
     setupListeners(event) {
@@ -73,14 +78,43 @@ class Game {
         this.player.setupListeners(event)
         this.keyPiece.forEach(key => key.setupListeners(event))
         this.enemy.forEach(enemy => enemy.setupListeners(event))
+        this.obstacles.forEach(obstacles => obstacles.setupListeners(event))
+    }
+
+    gameOver(){
+        clearInterval(this.intervalId)
+        
+        this.ctx.save()
+    
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 1)'
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    
+        this.ctx.fillStyle = 'white'
+        this.ctx.textAlign = 'center'
+        this.ctx.font = 'bold 32px sans-serif'
+        this.ctx.fillText(`Game Over!`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
+    
+        this.ctx.restore()
     }
 
     checkCollision(){
-        const keyColiding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
+        // colision con llave
+        const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
 
-        if(keyColiding){
-            this.keyPiece = this.keyPiece.filter(keyPiece => keyPiece !== keyColiding)
+        if(keyColliding){
+            this.keyPiece = this.keyPiece.filter(keyPiece => keyPiece !== keyColliding)
             this.keysTaken++
         }
+
+        // colision con enemigo
+        const enemyColliding = this.enemy.find(enemy => this.player.collidesWith(enemy))
+    
+        if(enemyColliding && this.player.ticks % 100 === 0){
+            this.player.health -= 10
+            if(this.player.health === 0){
+                this.gameOver()
+            }
+        } 
+
     }
 }

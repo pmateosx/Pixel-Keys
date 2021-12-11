@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
     startButton.onclick = () => {
         game.start()
         startButton.style.display = 'none'
+        // que vuelva a aparecer el boton una vez muera
     }
 
     window.addEventListener('keydown', (event) => {

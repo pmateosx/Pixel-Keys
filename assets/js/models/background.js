@@ -37,7 +37,6 @@ class Background {
           this.height
         )
       }
-      console.log(`esto es mi x ${this.x} esto es mi y ${this.y}`);
     }
 
   setupListeners(event) {
@@ -101,7 +100,5 @@ class Background {
         if(this.y > 0){
             this.y = 0
         }
-
-
       }
 }
