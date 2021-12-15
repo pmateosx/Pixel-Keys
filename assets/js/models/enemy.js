@@ -50,6 +50,13 @@ class Enemy {
             this.height
         )
             this.ticks++
+            
+            if(this.ticks % 7 === 0) {
+              this.xFrame++
+              if(this.xFrame >= (this.horizontalFrames)){
+                  this.xFrame = 0
+              }
+          }
 
         }
     }
@@ -98,13 +105,6 @@ class Enemy {
         }
         if (this.movements.down) {
             this.vy = -this.speed
-        }
-
-        if(this.ticks % 7 === 0) {
-            this.xFrame++
-            if(this.xFrame >= (this.horizontalFrames)){
-                this.xFrame = 0
-            }
         }
     }
 }

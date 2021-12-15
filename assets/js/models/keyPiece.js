@@ -49,6 +49,12 @@ class keyPiece {
             )
         }
         this.ticks++
+        if(this.ticks % 10 === 0) {
+          this.xFrame++
+          if(this.xFrame >= (this.horizontalFrames -1)){
+              this.xFrame = 0
+          }
+      }
     }
 
     setupListeners(event) {
@@ -95,13 +101,6 @@ class keyPiece {
         }
         if (this.movements.down) {
             this.vy = -this.speed
-        }
-
-        if(this.ticks % 10 === 0) {
-            this.xFrame++
-            if(this.xFrame >= (this.horizontalFrames -1)){
-                this.xFrame = 0
-            }
         }
     }
 

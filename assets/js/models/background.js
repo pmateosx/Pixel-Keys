@@ -1,8 +1,7 @@
 class Background {
   constructor(ctx){
     this.ctx = ctx
-    // esto deberia estar condicionado por el inicio del personaje
-    // podemos hacerlo con this.player.x?
+
     this.x = -1794
     this.y = -3698
 
@@ -25,6 +24,8 @@ class Background {
       left: false,
       right: false
     }
+
+    //this.colisionBorder = false
   }
 
     draw(){
@@ -89,16 +90,38 @@ class Background {
         //colission with canvas border 
         if(this.x <= this.ctx.canvas.width - this.width){
             this.x = this.ctx.canvas.width - this.width
+            
         }
         if(this.x > 0){
             this.x = 0
+           
         } 
 
         if(this.y <= this.ctx.canvas.height - this.height){
             this.y = this.ctx.canvas.height - this.height
+           
         }
         if(this.y > 0){
             this.y = 0
-        }
+           
+        } 
+        
+
+/*         if(this.x <= this.ctx.canvas.width - this.width){
+          this.x = this.ctx.canvas.width - this.width
+          this.colisionBorder = true
+        } else if (this.x > 0){
+            this.x = 0
+            this.colisionBorder = true
+        } else if (this.y <= this.ctx.canvas.height - this.height){
+            this.y = this.ctx.canvas.height - this.height
+            this.colisionBorder = true
+        } else if (this.y > 0){
+            this.y = 0
+            this.colisionBorder = true
+        } else {
+          this.colisionBorder = false
+        } */
+
       }
 }

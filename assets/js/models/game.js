@@ -44,14 +44,28 @@ class Game {
     move() {
         this.background.move()
         this.player.move() 
+        //this.staticElementsMove()
         this.moveKeys()
         this.enemy.forEach(enemy => enemy.move())
         this.obstacles.forEach(obstacles => obstacles.move())
+
     }
+
 
     moveKeys() {
         this.keyPiece.forEach(keyPiece => keyPiece.move())
     }
+
+/*     staticElementsMove(){
+        if(!(this.background.x <= this.ctx.canvas.width - this.background.width &&
+            this.background.x > 0 &&
+            this.background.y <= this.ctx.canvas.height - this.background.height &&
+            this.background.y > 0)){
+                this.moveKeys()
+                this.enemy.forEach(enemy => enemy.move())
+                this.obstacles.forEach(obstacles => obstacles.move())
+            }
+    } */
 
     // pendiente de pasar a otro metodo
     drawKeyPieces() {
@@ -97,6 +111,9 @@ class Game {
         this.ctx.restore()
     }
 
+
+     
+
     checkCollision(){
         // colision con llave
         const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
@@ -116,5 +133,47 @@ class Game {
             }
         } 
 
+        this.obstacles.forEach(obstacle => this.collidesWithObstacles(obstacle))
+        
+
     }
+
+    collidesWithObstacles(obstacle){
+
+                if( this.player.y <= obstacle.y + obstacle.height && 
+                this.player.y >= obstacle.y && 
+                this.player.x + this.player.width >= obstacle.x && 
+                this.player.x <= obstacle.x + obstacle.width &&
+                this.player.y + this.player.height > obstacle.y + obstacle.height){
+                    this.background.y = element.y + element.height
+                    this.background.vy = 0
+             } /* else if ( this.player.y + this.player.height >= element.y &&
+                this.player.y + this.player.height <= element.y + element.height &&
+                this.player.x + this.player.width >= element.x &&
+                this.player.x <= element.x + element.width &&
+                this.y < element.y){
+                    //this.background.y = element.y - this.background.height
+                    this.background.vy = 0
+                return 'up'} */
+            }
+           
+        /*     }else if ( this.y + this.height >= element.y &&
+                this.y <= element.y + (element.height - 60) &&
+                this.x + this.width >= (element.x + 15) &&
+                this.x < (element.x + 15) &&
+                this.previousX +  this.width < (element.x + 15)){
+                    this.x  = (element.x + 15) - this.width - 1
+                    this.vx = 0
+                return 'left'
+            } else if ( this.y + this.height >= element.y &&
+                this.y <= element.y + (element.height - 60) &&
+                this.x <= (element.x + 15) + (element.width - 30) &&
+                this.x + this.width > (element.x + 15) + (element.width - 30) &&
+                this.previousX > (element.x + 15) + (element.width - 30)){
+                        this.x  = (element.x + 15) + (element.width - 30) + 1
+                        this.vx = 0
+                return 'right'
+            } */
+        
+
 }
