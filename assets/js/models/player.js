@@ -61,7 +61,6 @@ class Player {
           )
           this.ticks++
       }
-      console.log(`Vida: ${this.health}`);
     }
 
     move(){

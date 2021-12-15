@@ -32,6 +32,26 @@ class keyPiece {
             left: false,
             right: false
         }
+
+        this.isBackgroundColliding = undefined
+    }
+
+    setBackgroundColliding(value) {
+      const temp = this.isBackgroundColliding
+      this.isBackgroundColliding = value
+
+      // if (this.isBackgroundColliding === 'left' && temp !== this.isBackgroundColliding) {
+      //   this.x -= 6
+      // }
+      // if (this.isBackgroundColliding === 'right' && temp !== this.isBackgroundColliding) {
+      //   this.x += 6
+      // }
+      // if (this.isBackgroundColliding === 'top' && temp !== this.isBackgroundColliding) {
+      //   this.y += 6
+      // }
+      // if (this.isBackgroundColliding === 'bottom' && temp !== this.isBackgroundColliding) {
+      //   this.y += 6
+      // }
     }
 
     draw(){
@@ -79,9 +99,6 @@ class keyPiece {
       }
 
     move(){
-        this.x += this.vx
-        this.y += this.vy
-
         if (!this.movements.right && !this.movements.left) {
           this.vx = 0
         }
@@ -101,6 +118,14 @@ class keyPiece {
         }
         if (this.movements.down) {
             this.vy = -this.speed
+        }
+
+        if (this.isBackgroundColliding !== 'left' && this.isBackgroundColliding !== 'right') {
+          this.x += this.vx
+        }
+
+        if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
+          this.y += this.vy
         }
     }
 

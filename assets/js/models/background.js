@@ -25,7 +25,6 @@ class Background {
       right: false
     }
 
-    //this.colisionBorder = false
   }
 
     draw(){
@@ -62,66 +61,60 @@ class Background {
     }
 
     move() {
+      if (!this.movements.right && !this.movements.left) {
+        this.vx = 0
+      }
+      if (!this.movements.up && !this.movements.down) {
+        this.vy = 0
+      }
+  
+      if (this.movements.right) {
+        this.vx = -this.speed
+      }
+      if (this.movements.left) {
+        this.vx = this.speed
+      }
+  
+      if (this.movements.up) {
+          this.vy = this.speed
+      }
+      if (this.movements.down) {
+          this.vy = -this.speed
+      }
+      
+      //colission with canvas border 
+      if(this.x <= this.ctx.canvas.width - this.width && !this.movements.left){
+          this.x = this.ctx.canvas.width - this.width
+          this.vx = 0
+      }
+      if(this.x >= 0 && !this.movements.right){
+          this.x = 0
+          this.vx = 0
+      } 
+
+      if(this.y <= this.ctx.canvas.height - this.height && !this.movements.up){
+          this.y = this.ctx.canvas.height - this.height
+          this.vy = 0
+      }
+      if(this.y >= 0  && !this.movements.down){
+          this.y = 0
+          this.vy = 0
+      }
 
       this.x += this.vx
       this.y += this.vy
+    } 
 
-        if (!this.movements.right && !this.movements.left) {
-          this.vx = 0
-        }
-        if (!this.movements.up && !this.movements.down) {
-          this.vy = 0
-        }
-    
-        if (this.movements.right) {
-          this.vx = -this.speed
-        }
-        if (this.movements.left) {
-          this.vx = this.speed
-        }
-    
-        if (this.movements.up) {
-            this.vy = this.speed
-        }
-        if (this.movements.down) {
-            this.vy = -this.speed
-        }
-
-        //colission with canvas border 
-        if(this.x <= this.ctx.canvas.width - this.width){
-            this.x = this.ctx.canvas.width - this.width
-            
-        }
-        if(this.x > 0){
-            this.x = 0
-           
-        } 
-
-        if(this.y <= this.ctx.canvas.height - this.height){
-            this.y = this.ctx.canvas.height - this.height
-           
-        }
-        if(this.y > 0){
-            this.y = 0
-           
-        } 
-        
-
-/*         if(this.x <= this.ctx.canvas.width - this.width){
-          this.x = this.ctx.canvas.width - this.width
-          this.colisionBorder = true
-        } else if (this.x > 0){
-            this.x = 0
-            this.colisionBorder = true
-        } else if (this.y <= this.ctx.canvas.height - this.height){
-            this.y = this.ctx.canvas.height - this.height
-            this.colisionBorder = true
-        } else if (this.y > 0){
-            this.y = 0
-            this.colisionBorder = true
-        } else {
-          this.colisionBorder = false
-        } */
+    isBackgroundColliding() {
+      if(this.x <= this.ctx.canvas.width - this.width && !this.movements.left) {
+        return "right"
+      } else if (this.x >= 0 && !this.movements.right) {
+          return "left"
+      } else if (this.y <= this.ctx.canvas.height - this.height && !this.movements.up) {
+          return "bottom"
+      } else if (this.y >= 0 && this.movements.down) {
+          return "top"
+      }
+    }
 
       }
-}
