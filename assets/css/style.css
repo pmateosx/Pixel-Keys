@@ -6,6 +6,8 @@ body{
 #start-button{
     position: absolute;
     cursor: pointer;
+    margin: 0 auto;
+    transform: translateY(2.5rem);
 }
 
 #canvas {
@@ -15,6 +17,7 @@ body{
     image-rendering: pixelated;
     width: 800px;
     height: 500px;
+    transform: translateY(2.5rem);
 }
 
 

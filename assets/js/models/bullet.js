@@ -7,8 +7,8 @@ class Bullet {
 
         this.damage = 15
 
-        this.width = 14*3
-        this.height = 14*3
+        this.width = 14*4
+        this.height = 14*4
 
         this.vx = vx
         this.vy = vy
@@ -19,6 +19,12 @@ class Bullet {
         this.img.onload = () => {
                 this.img.isReady = true
             }
+
+        this.horizontalFrames = 6
+        this.verticalFrames = 1
+
+        this.yFrame= 0
+        this.xFrame = 0
 
         this.ticks = 0
 
@@ -32,7 +38,7 @@ class Bullet {
       }
 
       draw() {
-        if (this.img.isReady) {
+         if (this.img.isReady) {
             this.ctx.drawImage(
                 this.img,
                 this.x,
@@ -40,11 +46,8 @@ class Bullet {
                 this.width,
                 this.height
             )
-        }
-    }
-
-/*     draw(){
-        if(this.img.isReady){
+        } 
+/*         if(this.img.isReady){
             this.ctx.drawImage(
                 this.img,
                 (this.img.width * this.xFrame) / this.horizontalFrames,
@@ -56,15 +59,17 @@ class Bullet {
                 this.width,
                 this.height
             )
-        } */
-/*         this.ticks++
+        }
+
+        this.ticks++
+        
         if(this.ticks % 10 === 0) {
             this.xFrame++
-            if(this.xFrame >= (this.horizontalFrames -1)){
+            if(this.xFrame >= (this.horizontalFrames)){
                 this.xFrame = 0
             }
         } */
-    //}
+    }
 
     move(){
         this.x += this.vx

@@ -130,9 +130,29 @@ class Enemy {
         this.getPlayerAngle()
         this.x += this.vx * (this.speed - 3)
         this.y += this.vy * (this.speed - 3)
-      
 
-      
+        console.log(`Esto es la VX ${this.vx}`);
+        console.log(`Esto es la VY ${this.vy}`);
+
+        console.log(this.angle);
+        // colocamos la vista del sprite
+        if( this.vx >= 0 && this.vy < 0){
+          // por arriba VX positiva y VY negativa
+          this.yFrame = 2
+        } else if(this.vx >= 0 && this.vy >= 0){
+          // derecha todo positivo
+          this.yFrame = 1
+        } else if(this.vx < 0 && this.vy >= 0){
+          // abajo VX negativa y vy positiva
+          this.yFrame = 5
+        } else if ( this.vx < 0 && this.vy < 0)
+        // izquierda todo negativo
+        this.yFrame = 4
+
+        
+
+        
+
 
       if (!this.movements.right && !this.movements.left) {
         this.vx = 0

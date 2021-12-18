@@ -25,6 +25,15 @@ class Game {
 
         this.keysTaken = 0
 
+        // imagen de vida de jugador 
+
+        this.img = new Image()
+        this.img.src = './assets/images/game-ui/UI - points.png'
+        this.img.isReady = false
+        this.img.onload = () => {
+                this.img.isReady = true
+            }
+
         
     }
 
@@ -37,6 +46,7 @@ class Game {
                 this.checkTheNearest() 
                 this.checkCollision()
                 this.checkHealthEnemy()
+                this.playerLife()
                 
             }, this.fps)
         }
@@ -66,21 +76,11 @@ class Game {
         this.enemy.forEach(enemy=> enemy.move())
     }
 
-    // pendiente de pasar a otro metodo
-    drawKeyPieces() {
-        this.ctx.save()
-        this.ctx.fillStyle= "rgba(255, 255, 255, 0.8)"
-        this.ctx.fillRect(20, 15, 250, 60)
-        this.ctx.restore()
-        this.ctx.font = 'bold 40px monospace'
-        this.ctx.fillText(`Keys ${this.keysTaken}/3`, 40, 60)
-    }
-
     draw() {
         this.background.draw()
+        this.playerLife()
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.obstacles.forEach(obstacles => obstacles.draw())
-        this.drawKeyPieces()
         this.enemy.forEach(enemy => enemy.draw())
         this.player.draw()
     }
@@ -180,6 +180,37 @@ class Game {
                 setTimeout(() => this.enemy.splice(index, 1), 1000)
             }
         })
+    }
+
+    playerLife(){
+        // vida del player
+        if(this.player.health > 0){
+            const lifePointsBar = this.player.health * 210 / 100
+      
+            this.ctx.save()
+            this.ctx.fillStyle = '#5b4a42'
+            this.ctx.fillRect(74, 45, 210, 70)
+            this.ctx.restore()
+            this.ctx.save()
+                this.ctx.fillStyle = '#67c115'
+                this.ctx.fillRect(74, 45, lifePointsBar, 70)
+            this.ctx.restore()
+          }
+
+  // pintamos la imagen de la vida
+          if (this.img.isReady) {
+            this.ctx.drawImage(
+                this.img,
+                0,
+                25,
+                this.img.width,
+                this.img.height
+            )
+        } 
+        this.ctx.fillStyle = '#463127'
+        this.ctx.font = 'bold 34px monospace'
+        this.ctx.fillText(`Keys ${this.keysTaken}/3`, 80, 119)
+
     }
 
     // OBSTACULOS CHECKER
