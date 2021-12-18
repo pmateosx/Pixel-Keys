@@ -39,19 +39,6 @@ class keyPiece {
     setBackgroundColliding(value) {
       const temp = this.isBackgroundColliding
       this.isBackgroundColliding = value
-
-      // if (this.isBackgroundColliding === 'left' && temp !== this.isBackgroundColliding) {
-      //   this.x -= 6
-      // }
-      // if (this.isBackgroundColliding === 'right' && temp !== this.isBackgroundColliding) {
-      //   this.x += 6
-      // }
-      // if (this.isBackgroundColliding === 'top' && temp !== this.isBackgroundColliding) {
-      //   this.y += 6
-      // }
-      // if (this.isBackgroundColliding === 'bottom' && temp !== this.isBackgroundColliding) {
-      //   this.y += 6
-      // }
     }
 
     draw(){
@@ -68,6 +55,7 @@ class keyPiece {
                 this.height
             )
         }
+        
         this.ticks++
         if(this.ticks % 10 === 0) {
           this.xFrame++
