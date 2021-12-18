@@ -79,9 +79,9 @@ class Game {
     draw() {
         this.background.draw()
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
-        this.enemy.forEach(enemy => enemy.draw())
         this.obstacles.forEach(obstacles => obstacles.draw())
         this.drawKeyPieces()
+        this.enemy.forEach(enemy => enemy.draw())
         this.player.draw()
     }
 
@@ -164,18 +164,25 @@ class Game {
             })
         })
 
+        // OBSTACULOS
     /*     this.obstacles.forEach(obstacle => this.collidesWithObstacles(obstacle)) */
     }
 
     checkHealthEnemy(){
-
         this.enemy.forEach((enemy, index) =>{
             if(enemy.health <= 0){
-                this.enemy.splice(index, 1)
+                enemy.yFrame = 0
+                enemy.xFrame = 0
+                
+                setInterval(() =>{
+                    enemy.xFrame++
+                },this.fps)
+                setTimeout(() => this.enemy.splice(index, 1), 1000)
             }
         })
     }
 
+    // OBSTACULOS CHECKER
 /*     collidesWithObstacles(obstacle){
 
         if( this.player.y <= obstacle.y + obstacle.height && 

@@ -11,6 +11,9 @@ class Enemy {
     this.vx = 0
     this.vy = 0
 
+    this.playerX = (this.ctx.canvas.width / 2) - (this.width/2)
+    this.playerY = (this.ctx.canvas.height / 2) - (this.height/2)
+
     this.health = 150
 
     this.img = new Image()
@@ -56,6 +59,19 @@ class Enemy {
         this.width,
         this.height
     )
+
+    if(this.health > 0){
+      const lifePointsBar = this.health * this.width /300
+
+      this.ctx.save()
+      this.ctx.fillStyle = '#A6A6A6'
+      this.ctx.fillRect(this.x + 45, this.y + 35, 87, 8)
+      this.ctx.restore()
+      this.ctx.save()
+          this.ctx.fillStyle = '#F22D1B'
+          this.ctx.fillRect(this.x + 45, this.y + 35, lifePointsBar, 8)
+      this.ctx.restore()
+    }
         this.ticks++
         
         if(this.ticks % 7 === 0) {
@@ -64,7 +80,6 @@ class Enemy {
               this.xFrame = 0
           }
       }
-      console.log(`enemy life ${this.health}`);
     }
   }
 
@@ -89,48 +104,63 @@ class Enemy {
     }
     }
 
-  collidesWith(bullet){
-    console.log('pegaste');
-    const xPadding = 60
-    const yPadding = 70
-    return (
-      this.x + xPadding < (bullet.x + bullet.width) &&
-      this.x + this.width - xPadding > (bullet.x) &&
-      this.y + yPadding < (bullet.y + bullet.height) &&
-      this.y + this.height - yPadding > (bullet.y)
-    )
+    collidesWith(bullet){
+      const xPadding = 60
+      const yPadding = 70
+      return (
+        this.x + xPadding < (bullet.x + bullet.width) &&
+        this.x + this.width - xPadding > (bullet.x) &&
+        this.y + yPadding < (bullet.y + bullet.height) &&
+        this.y + this.height - yPadding > (bullet.y)
+      )
+    }
+
+    // formula mágica del angulo
+    getPlayerAngle() {
+      this.dx = this.playerX - this.x
+      this.dy = this.playerY - this.y
+      this.angle = Math.atan2(this.dx, this.dy)
+
+      this.vx = Math.sin(this.angle)
+      this.vy = Math.cos(this.angle)
+
   }
 
-  
+    move(){
+        this.getPlayerAngle()
+        this.x += this.vx * (this.speed - 3)
+        this.y += this.vy * (this.speed - 3)
+      
 
-  move(){
-    if (!this.movements.right && !this.movements.left) {
-      this.vx = 0
-    }
-    if (!this.movements.up && !this.movements.down) {
-      this.vy = 0
-    }
+      
 
-    if (this.movements.right) {
-      this.vx = -this.speed
-    }
-    if (this.movements.left) {
-      this.vx = this.speed
-    }
-    
-    if (this.movements.up) {
-        this.vy = this.speed
-    }
-    if (this.movements.down) {
-        this.vy = -this.speed
-    }
+      if (!this.movements.right && !this.movements.left) {
+        this.vx = 0
+      }
+      if (!this.movements.up && !this.movements.down) {
+        this.vy = 0
+      }
 
-    if (this.isBackgroundColliding !== 'left' && this.isBackgroundColliding !== 'right') {
-      this.x += this.vx
-    }
+      if (this.movements.right) {
+        this.vx = -this.speed
+      }
+      if (this.movements.left) {
+        this.vx = this.speed
+      }
+      
+      if (this.movements.up) {
+          this.vy = this.speed
+      }
+      if (this.movements.down) {
+          this.vy = -this.speed
+      }
 
-    if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
-      this.y += this.vy
+      if (this.isBackgroundColliding !== 'left' && this.isBackgroundColliding !== 'right') {
+        this.x += this.vx
+      }
+
+      if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
+        this.y += this.vy
+      }
     }
-  }
 }

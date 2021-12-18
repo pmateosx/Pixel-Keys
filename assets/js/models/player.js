@@ -55,6 +55,7 @@ class Player {
     }
 
     if(this.img.isReady){
+      this.bullets.forEach(bullets => bullets.draw())
         this.ctx.drawImage(
             this.img,
             (this.img.width * this.xFrame) / this.horizontalFrames,
@@ -68,9 +69,7 @@ class Player {
         )
         this.ticks++
     }
-    
   
-    this.bullets.forEach(bullets => bullets.draw())
 
     
     // disparar
@@ -123,19 +122,19 @@ class Player {
     }
   }
 
-    //checker para ver si chocamos con la key
+  //checker para ver si chocamos con la key
   collidesWith(keyPiece){
       return (
-        this.x < (keyPiece.x + keyPiece.width - 30) &&
-        this.x + this.width > (keyPiece.x + 50) &&
+        this.x < (keyPiece.x + keyPiece.width - 20) &&
+        this.x + this.width > (keyPiece.x + 30) &&
         this.y < (keyPiece.y + keyPiece.height -40) &&
         this.y + this.height > (keyPiece.y + 20)
       )
   }
 
   shot() {
-    if(this.ticks % 10 === 0){
-        // calcalmos el trayectoria con la formula
+    if(this.ticks % 10 === 0 && this.nearestEnemy){
+      // calcalmos el trayectoria con la formula
       let dx = (this.nearestEnemy.x + 30) - this.x
       let dy = (this.nearestEnemy.y +30) - this.y
       let angle = Math.atan2(dx, dy) 
