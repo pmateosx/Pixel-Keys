@@ -1,21 +1,65 @@
+@font-face {
+    font-family: 'pixel';
+    src: url('./assets/font/pixel.ttf') format('truetype'),
+    url('./assets/font/pixel.woff') format('woff'),
+    url('./assets/font/pixel.woff2') format('woff2');
+}
+
 body{
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #E3CDA8;
+    font-family: 'Courier New', Courier, monospace;
+    
 }
+
+p{
+    font-family: 'pixel';
+    color: red;
+}
+
+#top-display{
+    position: absolute;
+    top: 2%;
+}
+
+#game-logo{
+    position: absolute;
+    top: 5rem;
+    image-rendering: pixelated;
+}
+
+p{
+    position: absolute;
+    margin-top: 7rem;
+    text-align: center;
+    font-size: 1.3rem;
+    width: 25%;
+}
+
+br {
+    margin-top: 1rem;
+}
+
 #start-button{
     position: absolute;
     margin: 0 auto;
-    transform: translateY(3rem);
+    transform: translateY(13rem);
     background: none;
     border: none;
 }
+
+
 #start-img{
     width: 13rem;
     image-rendering: pixelated;
 
 }
+
 #start-img:hover{ 
     transform: scale(1.1)
 }
@@ -23,17 +67,17 @@ body{
 #canvas {
     margin: 0 auto;
     margin-top: 2rem;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     image-rendering: pixelated;
     width: 800px;
     height: 500px;
-    transform: translateY(2.5rem);
+    transform: translateY(2rem);
 }
 
 #movements {
     position: absolute;
-    left: 19.9rem;
-    bottom: 3.8rem;
+    left: 20rem;
+    bottom: 5.1rem;
     image-rendering: pixelated;
 }
 
