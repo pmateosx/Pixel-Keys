@@ -25,6 +25,7 @@ p{
 #top-display{
     position: absolute;
     top: 2%;
+    width: 100%;
 }
 
 #game-logo{

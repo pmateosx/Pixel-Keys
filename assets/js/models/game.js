@@ -11,17 +11,26 @@ class Game {
         ]
 
         this.enemy = [
-            // primera llave
-            new Enemy(ctx, 650, -250),
-            new Enemy(ctx, 450, 150),
-            new Enemy(ctx, 450, 150),
+            //enemigo de pruebas
+            new Enemy(ctx, 350, 150),
+
+             // primera llave
+            new Enemy(ctx, -650, -250),
+            new Enemy(ctx, -750, -450),
+            new Enemy(ctx, -750, 150),
 
             // segunda llave
-            new Enemy(ctx, 950, -1800),
-            new Enemy(ctx, 950, -1800),
-            new Enemy(ctx, 950, -1800),
-            new Enemy(ctx, 950, -1800)
+            new Enemy(ctx, 950, -1350),
+            new Enemy(ctx, 1000, -1700),
+            new Enemy(ctx, 450, -1750),
+            new Enemy(ctx, 450, -1400),
 
+            //tercera llave
+            new Enemy(ctx, 650, -3100),
+            new Enemy(ctx, 1000, -3100),
+            new Enemy(ctx, 970, -2890),
+            new Enemy(ctx, 450, -3000),
+            new Enemy(ctx, 350, -2600) 
         ]
 
         this.obstacles = [
@@ -56,6 +65,8 @@ class Game {
                 this.checkCollision()
                 this.checkHealthEnemy()
                 this.playerLife()
+                this.clearEnemies()
+                this.checkPlayerDistance()
                 
             }, this.fps)
         }
@@ -138,11 +149,34 @@ class Game {
             }).sort((a, b) => {
                 return a.distance - b.distance
             })
+
             this.player.nearestEnemy = enemiesWithDistance[0]
-            //console.log(NewEnemyObject)
-        }
-        
+        } 
     }
+
+     checkPlayerDistance(){
+        // claculamos la distancia unicamente para comprobar el player
+        if (this.enemy.length <= 0){
+            this.player.nearestEnemy = undefined
+        } else {
+        let a, b, c, NewEnemyObject
+        let enemiesWithDistance = this.enemy.map(enemy => {
+            a = enemy.x - this.player.x;
+            b = enemy.y - this.player.y;
+            c = Math.sqrt( a*a + b*b );
+            NewEnemyObject = {
+                distance: c,
+                x: enemy.x,
+                y: enemy.y
+            }
+            return NewEnemyObject
+        })
+
+        this.enemy.forEach((e, index) => {
+            e.playerDistance = enemiesWithDistance[index].distance
+        })
+    }
+    } 
 
     checkCollision(){
         // colision con llave
@@ -157,7 +191,7 @@ class Game {
         const enemyColliding = this.enemy.find(enemy => this.player.collidesWith(enemy))
     
         if(enemyColliding && this.player.ticks % 100 === 0){
-            this.player.health -= 10
+            this.player.health -= 20
             if(this.player.health === 0){ 
                 this.gameOver()
             }
@@ -172,23 +206,27 @@ class Game {
                 }
             })
         })
-
-        // OBSTACULOS
-    /*     this.obstacles.forEach(obstacle => this.collidesWithObstacles(obstacle)) */
     }
 
     checkHealthEnemy(){
-        this.enemy.forEach((enemy, index) =>{
-            if(enemy.health <= 0){
-                enemy.yFrame = 0
-                enemy.xFrame = 0
-                
-                setInterval(() =>{
-                    enemy.xFrame++
-                },this.fps)
-                setTimeout(() => this.enemy.splice(index, 1), 1000)
-            }
+        this.enemy.forEach(enemy => {
+          if(enemy.health <= 0){
+              enemy.yFrame = 0
+              enemy.xFrame = 0
+              
+              setInterval(() =>{
+                  enemy.xFrame++
+              },this.fps)
+              setTimeout(this.clearEnemies, 1000)
+          }
         })
+
+    }
+
+    clearEnemies() {
+      if(this.enemy.length > 0){
+        this.enemy = this.enemy.filter(enemyUnit => enemyUnit.health > 0)
+      }
     }
 
     playerLife(){
@@ -221,16 +259,4 @@ class Game {
         this.ctx.fillText(`Keys ${this.keysTaken}/3`, 80, 119)
 
     }
-
-    // OBSTACULOS CHECKER
-/*     collidesWithObstacles(obstacle){
-
-        if( this.player.y <= obstacle.y + obstacle.height && 
-        this.player.y >= obstacle.y && 
-        this.player.x + this.player.width >= obstacle.x && 
-        this.player.x <= obstacle.x + obstacle.width &&
-        this.player.y + this.player.height > obstacle.y + obstacle.height){
-            this.background.vy = 0
-        }
-    } */
 }

@@ -38,6 +38,8 @@ class Enemy {
         right: false
     }
 
+    this.playerDistance = undefined
+
     this.isBackgroundColliding = undefined
   }
 
@@ -79,8 +81,9 @@ class Enemy {
           if(this.xFrame >= (this.horizontalFrames)){
               this.xFrame = 0
           }
-      }
+        }
     }
+
   }
 
   setupListeners(event) {
@@ -127,32 +130,11 @@ class Enemy {
   }
 
     move(){
+      if(this.playerDistance <= 350){
         this.getPlayerAngle()
         this.x += this.vx * (this.speed - 3)
-        this.y += this.vy * (this.speed - 3)
-
-        console.log(`Esto es la VX ${this.vx}`);
-        console.log(`Esto es la VY ${this.vy}`);
-
-        console.log(this.angle);
-        // colocamos la vista del sprite
-        if( this.vx >= 0 && this.vy < 0){
-          // por arriba VX positiva y VY negativa
-          this.yFrame = 2
-        } else if(this.vx >= 0 && this.vy >= 0){
-          // derecha todo positivo
-          this.yFrame = 1
-        } else if(this.vx < 0 && this.vy >= 0){
-          // abajo VX negativa y vy positiva
-          this.yFrame = 5
-        } else if ( this.vx < 0 && this.vy < 0)
-        // izquierda todo negativo
-        this.yFrame = 4
-
-        
-
-        
-
+        this.y += this.vy * (this.speed - 3) 
+      }
 
       if (!this.movements.right && !this.movements.left) {
         this.vx = 0
@@ -182,5 +164,20 @@ class Enemy {
       if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
         this.y += this.vy
       }
+      this.getPlayerAngle()
+      console.log(this.angle);
+
+      if(this.angle <= 3 && this.angle >= 1.5){
+        this.yFrame = 1
+      } else if (this.angle <= 1.5 && this.angle >= 0.5){
+        this.yFrame = 5
+      } else if (this.angle <= 0.5 && this.angle >= -1.5){
+        this.yFrame = 5
+      } else if (this.angle <= -1.5 && this.angle >= -3){
+        this.yFrame = 4
+      } else {
+        this.yFrame = 2
+      }
+
     }
 }
