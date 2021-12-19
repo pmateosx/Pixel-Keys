@@ -4,6 +4,7 @@ class Game {
         
         this.background = new Background(ctx)
         this.player = new Player(ctx)
+        this.marauder = new Marauder(ctx)
         this.keyPiece = [
             new keyPiece(ctx, -750, 100),
             new keyPiece(ctx, 950, -1800),
@@ -82,6 +83,7 @@ class Game {
         this.background.move()
         this.player.move() 
         this.obstacles.forEach(obstacles => obstacles.move())
+        this.marauder.move()
     }
 
     moveKeys() {
@@ -102,6 +104,9 @@ class Game {
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.obstacles.forEach(obstacles => obstacles.draw())
         this.enemy.forEach(enemy => enemy.draw())
+        if(this.keyPiece.length <= 2){
+            this.marauder.draw()
+        }
         this.player.draw()
     }
 
@@ -111,6 +116,7 @@ class Game {
         this.keyPiece.forEach(key => key.setupListeners(event))
         this.enemy.forEach(enemy => enemy.setupListeners(event))
         this.obstacles.forEach(obstacles => obstacles.setupListeners(event))
+        this.marauder.setupListeners(event)
     }
 
     gameOver(){
@@ -151,6 +157,7 @@ class Game {
             })
 
             this.player.nearestEnemy = enemiesWithDistance[0]
+            this.player.enemyDistance = enemiesWithDistance[0].distance
         } 
     }
 
@@ -175,6 +182,11 @@ class Game {
         this.enemy.forEach((e, index) => {
             e.playerDistance = enemiesWithDistance[index].distance
         })
+
+        
+
+
+
     }
     } 
 
@@ -207,6 +219,7 @@ class Game {
             })
         })
     }
+
 
     checkHealthEnemy(){
         this.enemy.forEach(enemy => {

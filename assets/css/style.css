@@ -5,6 +5,14 @@
     url('./assets/font/pixel.woff2') format('woff2');
 }
 
+@font-face{
+    font-family:'04b_03';
+    src:url("./assets/font/04b03b.eot"),
+    url("./assets/font/04b03b.woff2") format("woff2"),
+    url("./assets/font/04b03b.woff") format("woff"),
+    url("./assets/font/04b03b.ttf") format("truetype");
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -13,14 +21,9 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: #E3CDA8;
-    font-family: 'Courier New', Courier, monospace;
     
 }
 
-p{
-    font-family: 'pixel';
-    color: red;
-}
 
 #top-display{
     position: absolute;
@@ -36,20 +39,17 @@ p{
 
 p{
     position: absolute;
-    margin-top: 7rem;
+    margin-top: 10rem;
     text-align: center;
     font-size: 1.3rem;
-    width: 25%;
-}
-
-br {
-    margin-top: 1rem;
+    width: 30%;
+    font-family: "04b_03", monospace;
 }
 
 #start-button{
     position: absolute;
     margin: 0 auto;
-    transform: translateY(13rem);
+    transform: translateY(16rem);
     background: none;
     border: none;
 }

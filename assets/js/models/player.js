@@ -41,6 +41,7 @@ class Player {
         }
 
       this.nearestEnemy = undefined
+      this.enemyDistance = undefined
   }
 
   draw(){
@@ -73,7 +74,7 @@ class Player {
 
     
     // disparar
-    if(this.isShooting){
+    if(this.isShooting && this.enemyDistance <= 400){
       this.shot()
     }
   }
@@ -139,7 +140,7 @@ class Player {
       let dy = (this.nearestEnemy.y +30) - this.y
       let angle = Math.atan2(dx, dy) 
 
-      this.bullets.push(new Bullet(this.ctx, this.x + (this.width/2), (this.y + 50), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed))
+      this.bullets.push(new Bullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed))
     }
   }
 
