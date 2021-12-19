@@ -2,12 +2,22 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 #start-button{
     position: absolute;
-    cursor: pointer;
     margin: 0 auto;
-    transform: translateY(2.5rem);
+    transform: translateY(3rem);
+    background: none;
+    border: none;
+}
+#start-img{
+    width: 13rem;
+    image-rendering: pixelated;
+
+}
+#start-img:hover{ 
+    transform: scale(1.1)
 }
 
 #canvas {
@@ -20,5 +30,11 @@ body{
     transform: translateY(2.5rem);
 }
 
+#movements {
+    position: absolute;
+    left: 19.9rem;
+    bottom: 3.8rem;
+    image-rendering: pixelated;
+}
 
 

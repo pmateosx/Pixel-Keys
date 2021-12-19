@@ -11,8 +11,17 @@ class Game {
         ]
 
         this.enemy = [
+            // primera llave
             new Enemy(ctx, 650, -250),
             new Enemy(ctx, 450, 150),
+            new Enemy(ctx, 450, 150),
+
+            // segunda llave
+            new Enemy(ctx, 950, -1800),
+            new Enemy(ctx, 950, -1800),
+            new Enemy(ctx, 950, -1800),
+            new Enemy(ctx, 950, -1800)
+
         ]
 
         this.obstacles = [
