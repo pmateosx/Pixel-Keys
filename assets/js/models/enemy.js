@@ -165,8 +165,6 @@ class Enemy {
         this.y += this.vy
       }
       this.getPlayerAngle()
-      console.log(this.angle);
-
       if(this.angle <= 3 && this.angle >= 1.5){
         this.yFrame = 1
       } else if (this.angle <= 1.5 && this.angle >= 0.5){

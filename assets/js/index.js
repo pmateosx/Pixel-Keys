@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
     const startButton = document.getElementById('start-button')
     const gameLogo = document.getElementById('game-logo')
-    const introText = document.getElementById('introText')
+    const introText = document.getElementById('intro-text')
     const movements = document.getElementById('movements')
     movements.style.display = 'none'
 
@@ -17,8 +17,6 @@ window.addEventListener('load', () => {
         gameLogo.style.display = 'none'
         introText.style.display = 'none'
         movements.style.display = 'initial'
-        
-        // que vuelva a aparecer el boton una vez muera
     }
 
     window.addEventListener('keydown', (event) => {

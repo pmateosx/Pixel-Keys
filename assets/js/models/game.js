@@ -4,7 +4,7 @@ class Game {
         
         this.background = new Background(ctx)
         this.player = new Player(ctx)
-        this.marauder = new Marauder(ctx)
+
         this.keyPiece = [
             new keyPiece(ctx, -750, 100),
             new keyPiece(ctx, 950, -1800),
@@ -31,7 +31,7 @@ class Game {
             new Enemy(ctx, 1000, -3100),
             new Enemy(ctx, 970, -2890),
             new Enemy(ctx, 450, -3000),
-            new Enemy(ctx, 350, -2600) 
+            new Enemy(ctx, 350, -2600),
         ]
 
         this.obstacles = [
@@ -53,6 +53,7 @@ class Game {
                 this.img.isReady = true
             }
 
+        this.killCount = 0
         
     }
 
@@ -63,9 +64,9 @@ class Game {
                 this.draw()
                 this.move()
                 this.checkTheNearest() 
+                this.playerLife()
                 this.checkCollision()
                 this.checkHealthEnemy()
-                this.playerLife()
                 this.clearEnemies()
                 this.checkPlayerDistance()
                 
@@ -83,7 +84,6 @@ class Game {
         this.background.move()
         this.player.move() 
         this.obstacles.forEach(obstacles => obstacles.move())
-        this.marauder.move()
     }
 
     moveKeys() {
@@ -104,9 +104,6 @@ class Game {
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.obstacles.forEach(obstacles => obstacles.draw())
         this.enemy.forEach(enemy => enemy.draw())
-        if(this.keyPiece.length <= 2){
-            this.marauder.draw()
-        }
         this.player.draw()
     }
 
@@ -116,7 +113,6 @@ class Game {
         this.keyPiece.forEach(key => key.setupListeners(event))
         this.enemy.forEach(enemy => enemy.setupListeners(event))
         this.obstacles.forEach(obstacles => obstacles.setupListeners(event))
-        this.marauder.setupListeners(event)
     }
 
     gameOver(){
@@ -182,21 +178,23 @@ class Game {
         this.enemy.forEach((e, index) => {
             e.playerDistance = enemiesWithDistance[index].distance
         })
-
-        
-
-
-
     }
     } 
 
     checkCollision(){
-        // colision con llave
+        // colision con llave        
         const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
 
         if(keyColliding){
             this.keyPiece = this.keyPiece.filter(keyPiece => keyPiece !== keyColliding)
             this.keysTaken++
+
+            this.enemy.push(
+                new Enemy (this.ctx, this.player.x + 350, this.player.y - 390),
+                new Enemy (this.ctx, this.player.x + 350, this.player.y - 620),
+                new Enemy (this.ctx, this.player.x + 350, this.player.y - 510),
+                new Enemy (this.ctx, this.player.x + 350, this.player.y - 350)
+            )
         }
 
         // colision con enemigo
@@ -219,7 +217,6 @@ class Game {
             })
         })
     }
-
 
     checkHealthEnemy(){
         this.enemy.forEach(enemy => {
@@ -270,6 +267,5 @@ class Game {
         this.ctx.fillStyle = '#463127'
         this.ctx.font = 'bold 34px monospace'
         this.ctx.fillText(`Keys ${this.keysTaken}/3`, 80, 119)
-
     }
 }

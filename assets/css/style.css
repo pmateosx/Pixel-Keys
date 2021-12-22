@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'pixel';
     src: url('./assets/font/pixel.ttf') format('truetype'),
     url('./assets/font/pixel.woff') format('woff'),
@@ -11,7 +11,7 @@
     url("./assets/font/04b03b.woff2") format("woff2"),
     url("./assets/font/04b03b.woff") format("woff"),
     url("./assets/font/04b03b.ttf") format("truetype");
-}
+} */
 
 body{
     margin: 0;
@@ -24,10 +24,22 @@ body{
     
 }
 
+#intro-text{
+    position: absolute;
+    top: 35%;
+    image-rendering: pixelated;
+}
+
 
 #top-display{
     position: absolute;
     top: 2%;
+    width: 100%;
+}
+
+#bottom-display{
+    position: absolute;
+    bottom: 2%;
     width: 100%;
 }
 
@@ -37,14 +49,14 @@ body{
     image-rendering: pixelated;
 }
 
-p{
+/* p{
     position: absolute;
     margin-top: 10rem;
     text-align: center;
     font-size: 1.3rem;
     width: 30%;
     font-family: "04b_03", monospace;
-}
+} */
 
 #start-button{
     position: absolute;
@@ -68,7 +80,6 @@ p{
 #canvas {
     margin: 0 auto;
     margin-top: 2rem;
-    /* border: 1px solid black; */
     image-rendering: pixelated;
     width: 800px;
     height: 500px;
@@ -78,7 +89,7 @@ p{
 #movements {
     position: absolute;
     left: 20rem;
-    bottom: 5.1rem;
+    bottom: 5.3rem;
     image-rendering: pixelated;
 }
 

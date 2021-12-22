@@ -1,3 +1,5 @@
+// pendiente para la actualizacion 5.1
+
 class Marauder {
     constructor(ctx){
         this.ctx = ctx 
@@ -5,7 +7,7 @@ class Marauder {
         this.x = 350
         this.y = 150
 
-        this.width = 150
+        this.width = 400
         this.height = 300
 
         this.speed = 6
