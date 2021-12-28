@@ -77,6 +77,57 @@ body{
     transform: scale(1.1)
 }
 
+#win-screen{
+    position: absolute;
+    z-index: 1;
+    top: 4rem;
+    width: 800px;
+    image-rendering: pixelated;
+}
+
+#send-button{
+    position: absolute;
+    background: none;
+    border: none;
+    z-index: 2;
+    top: 24.7rem;
+    left: 58rem;
+    height: 2.3rem;
+}
+
+#send-button:hover{ 
+    transform: scale(1.1)
+}
+
+#name-input{
+    position: absolute;
+    background: #EFE5DA;
+    border: 1px solid #433229;
+    border-radius: 5px;
+    z-index: 2;
+    top: 24.7rem;
+    left: 45.8rem;
+    height: 2.3rem;
+    width: 12rem;
+    font-size: 16px;
+    font-family: monospace;
+    cursor: text;
+    text-align: center;
+}
+
+/* #restart-button {
+    position: absolute;
+    background: none;
+    border: none;
+    z-index: 2;
+    top: 23rem;
+    left: 45.5rem;
+} */
+
+#restart-img:hover{ 
+    transform: scale(1.1)
+}
+
 #canvas {
     margin: 0 auto;
     margin-top: 2rem;
@@ -84,6 +135,7 @@ body{
     width: 800px;
     height: 500px;
     transform: translateY(2rem);
+    border-radius: 05px;
 }
 
 #movements {
@@ -93,4 +145,29 @@ body{
     image-rendering: pixelated;
 }
 
+.display-on {
+    visibility: visible;
+}
 
+.display-off{
+    visibility: hidden;
+}
+
+
+#diploma{
+    position: absolute;
+    z-index: 3;
+    width: 75%;
+    top: 2rem;
+    image-rendering: pixelated;
+}
+
+#name{
+    position: absolute;
+    z-index: 4;
+    font-size: 1.5rem;
+    top: 12rem;
+    margin-left: 1rem;
+    font-family: monospace;
+    text-align: center;
+}

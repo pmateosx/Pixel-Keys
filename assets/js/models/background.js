@@ -61,13 +61,15 @@ class Background {
     }
 
     move() {
+      // detener movimiento
       if (!this.movements.right && !this.movements.left) {
         this.vx = 0
       }
       if (!this.movements.up && !this.movements.down) {
         this.vy = 0
       }
-  
+      
+      // deplazamiento izq y derecha
       if (this.movements.right) {
         this.vx = -this.speed
       }
@@ -75,6 +77,7 @@ class Background {
         this.vx = this.speed
       }
   
+      // mover arriba o abajo
       if (this.movements.up) {
           this.vy = this.speed
       }
@@ -112,7 +115,7 @@ class Background {
           return "left"
       } else if (this.y <= this.ctx.canvas.height - this.height && !this.movements.up) {
           return "bottom"
-      } else if (this.y >= 0 && this.movements.down) {
+      } else if (this.y >= 0 && !this.movements.down) {
           return "top"
       }
     }

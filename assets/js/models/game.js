@@ -35,7 +35,7 @@ class Game {
         ]
 
         this.obstacles = [
-            //new Obstacles(ctx, 650, -250, 'arbol'),
+            new Obstacles(ctx, 650, -250, 'arbol'),
             //new Obstacles(ctx, 350, -650, 'arbol')
         ]
 
@@ -53,7 +53,6 @@ class Game {
                 this.img.isReady = true
             }
 
-        this.killCount = 0
         
     }
 
@@ -69,6 +68,7 @@ class Game {
                 this.checkHealthEnemy()
                 this.clearEnemies()
                 this.checkPlayerDistance()
+                this.win()
                 
             }, this.fps)
         }
@@ -79,11 +79,13 @@ class Game {
       }
 
     move() {
-        this.moveKeys()
-        this.moveEnemys()
-        this.background.move()
-        this.player.move() 
-        this.obstacles.forEach(obstacles => obstacles.move())
+        if(!this.checkObstacleColliding()){
+            this.moveKeys()
+            this.moveEnemys()
+            this.moveObstacles()
+            this.background.move()
+        }
+        this.player.move()
     }
 
     moveKeys() {
@@ -96,6 +98,12 @@ class Game {
         const collidingEnemy = this.background.isBackgroundColliding()
         this.enemy.forEach(oneEnemy => oneEnemy.setBackgroundColliding(collidingEnemy))
         this.enemy.forEach(enemy=> enemy.move())
+    }
+
+    moveObstacles(){
+        const collidingObstacles = this.background.isBackgroundColliding()
+        this.obstacles.forEach(oneObstacle => oneObstacle.setBackgroundColliding(collidingObstacles))
+        this.obstacles.forEach(obstacle=> obstacle.move())
     }
 
     draw() {
@@ -189,12 +197,19 @@ class Game {
             this.keyPiece = this.keyPiece.filter(keyPiece => keyPiece !== keyColliding)
             this.keysTaken++
 
-            this.enemy.push(
+            // curamos al jugador
+            this.player.health += 25
+            if( this.player.health >= 100){
+                this.player.health = 100
+            }
+
+            // metemos mas enemigos en el mapa
+/*             this.enemy.push(
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 390),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 620),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 510),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 350)
-            )
+            ) */
         }
 
         // colision con enemigo
@@ -202,7 +217,7 @@ class Game {
     
         if(enemyColliding && this.player.ticks % 100 === 0){
             this.player.health -= 20
-            if(this.player.health === 0){ 
+            if(this.player.health <= 0){ 
                 this.gameOver()
             }
         } 
@@ -218,6 +233,31 @@ class Game {
         })
     }
 
+    checkObstacleColliding(){   
+        const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
+        
+        
+        this.obstacles.forEach(obstacle => {
+            this.player.obstacleColliding(obstacle)
+        })
+    }
+
+/*     checkObstacleColliding(){
+        this.obstacles.forEach(element => { // element = obstacle
+            if( this.player.y <= element.y + (element.height - 60) && 
+            this.player.y >= element.y && 
+            this.player.x + this.player.width >= (element.x + 15) && 
+            this.player.x <= (element.x + 15) + (element.width - 30) &&
+            this.player.y + this.player.height > element.y + (element.height - 60)
+            //this.previousY > element.y + (element.height - 60)
+            ){
+                return true
+            } else  {
+                return false
+            }
+        })
+    } */
+
     checkHealthEnemy(){
         this.enemy.forEach(enemy => {
           if(enemy.health <= 0){
@@ -227,10 +267,9 @@ class Game {
               setInterval(() =>{
                   enemy.xFrame++
               },this.fps)
-              setTimeout(this.clearEnemies, 1000)
+              setTimeout(this.clearEnemies, 3000)
           }
         })
-
     }
 
     clearEnemies() {
@@ -267,5 +306,46 @@ class Game {
         this.ctx.fillStyle = '#463127'
         this.ctx.font = 'bold 34px monospace'
         this.ctx.fillText(`Keys ${this.keysTaken}/3`, 80, 119)
+    }
+
+    stop() {
+        clearInterval(this.intervalId)
+    }
+
+    win(){
+        const winScreen = document.getElementById('win-screen')
+        const nameInput = document.getElementById('name-input')
+        const sendInput = document.getElementById('send-button')
+        if(this.keysTaken === 3){
+            this.stop()
+            winScreen.classList.remove("display-off")
+            winScreen.classList.add("display-on")
+
+            nameInput.classList.remove("display-off")
+            nameInput.classList.add("display-on")
+
+            sendInput.classList.remove("display-off")
+            sendInput.classList.add("display-on")
+
+
+
+            const diploma = document.getElementById('diploma')
+
+            const name = document.getElementById('name')
+            
+            
+            const sendButton = document.getElementById('send-button')
+        
+            sendButton.onclick = () => {
+              name.innerText = nameInput.value
+              name.classList.remove("display-off")
+              name.classList.add("display-on")
+             
+              diploma.classList.remove("display-off")
+              diploma.classList.add("display-on")
+          
+            }
+        }
+        
     }
 }

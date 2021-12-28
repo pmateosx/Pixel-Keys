@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>Pixel Keys</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link  rel="icon"   href="./assets/images/favicon/favicon.png" type="image/png"/>
 </head>
 <body>
 
-    <canvas id="canvas" width="1600" height="1000"></canvas>
+    
+    <!-- Win Screen -->
+    <img id="win-screen" class="display-off" src="./assets/images/screens/win-1.png" alt="win screen">
+    <button id="send-button" class="display-off">
+        <img src="./assets/images/screens/send-button.png" alt="send form">
+    </button>
+    <input id="name-input" class="display-off" type="text" placeholder="Write your name" required="">
+
+    <!-- DIPLOMA -->
+    <p id="name" class="display-off"></p>
+    <img id="diploma" class="display-off" src="assets/images/screens/diploma_1.png" alt="diploma">
+
+    <!-- CANVAS -->
+    <canvas id="canvas" class="display-on" width="1600" height="1000"></canvas>
 
     <img id="top-display" src="./assets/images/game-ui/top-display.png" alt="top display">
     <img id="game-logo" src="./assets/images/game-ui/game logo.png" alt="game logo">
@@ -19,9 +33,8 @@
    
 
     <button id="start-button">
-        <img id="start-img" src="./assets/images/game-ui/start-button.png" alt="Start button"></button>
-
-  
+        <img id="start-img" src="./assets/images/game-ui/start-button.png" alt="Start button">
+    </button>
         
     <img id="movements" src="./assets/images/game-ui/ui-control.png" alt="instrucciones">
 

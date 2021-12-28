@@ -89,7 +89,6 @@ class Player {
               }
             }
         }
-
   }
 
   setupListeners(event) {
@@ -144,5 +143,17 @@ class Player {
     }
   }
 
+  obstacleColliding(element){
+    if( this.y <= element.y + (element.height - 60) && 
+    this.y >= element.y && 
+    this.x + this.width >= (element.x + 15) && 
+    this.x <= (element.x + 15) + (element.width - 30) &&
+    this.y + this.height > element.y + (element.height - 60)
+    ){  
+        return true
+    } else  {
+        return false
+    }
+}
 
 }

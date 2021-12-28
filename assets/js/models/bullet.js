@@ -31,22 +31,10 @@ class Bullet {
         this.isBackgroundColliding = undefined
         }
 
-
     setBackgroundColliding(value) {
         const temp = this.isBackgroundColliding
         this.isBackgroundColliding = value
       }
-
-/*       draw() {
-         if (this.img.isReady) {
-            this.ctx.drawImage(
-                this.img,
-                this.x,
-                this.y,
-                this.width,
-                this.height
-            )
-        }  */
 
         draw(){
             if(this.img.isReady){
@@ -72,9 +60,7 @@ class Bullet {
                 }
             } 
         }
-         
     
-
     move(){
         this.x += this.vx
         this.y += this.vy

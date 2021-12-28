@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
     const movements = document.getElementById('movements')
     movements.style.display = 'none'
 
-
     startButton.onclick = () => {
         game.start()
         startButton.style.display = 'none'
