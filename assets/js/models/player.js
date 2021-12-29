@@ -144,11 +144,11 @@ class Player {
   }
 
 /*   obstacleColliding(element){
-    if( this.y <= element.y + (element.height - 60) && 
+    if( this.y <= element.y + element.height && 
     this.y >= element.y && 
-    this.x + this.width >= (element.x + 15) && 
-    this.x <= (element.x + 15) + (element.width - 30) &&
-    this.y + this.height > element.y + (element.height - 60)
+    this.x + this.width >= element.x && 
+    this.x <= element.x + element.width&&
+    this.y + this.height > element.y + element.height
     ){  
         return true
     } else  {
