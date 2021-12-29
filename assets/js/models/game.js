@@ -35,7 +35,7 @@ class Game {
         ]
 
         this.obstacles = [
-            new Obstacles(ctx, 650, -250, 'arbol'),
+            //new Obstacles(ctx, 650, -250, 'arbol'),
             //new Obstacles(ctx, 350, -650, 'arbol')
         ]
 

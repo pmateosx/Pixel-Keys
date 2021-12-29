@@ -24,6 +24,15 @@ body{
     
 }
 
+#home-button{
+    image-rendering: pixelated;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+}
+
 #intro-text{
     position: absolute;
     top: 35%;
