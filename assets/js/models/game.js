@@ -199,12 +199,12 @@ class Game {
             }
 
             // metemos mas enemigos en el mapa
-/*             this.enemy.push(
+             this.enemy.push(
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 390),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 620),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 510),
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 350)
-            ) */
+            ) 
         }
 
         // colision con enemigo
@@ -344,8 +344,6 @@ class Game {
   
               sendInput.classList.remove("display-on")
               sendInput.classList.add("display-off")
-
-
           
             }
         }

@@ -143,7 +143,7 @@ class Player {
     }
   }
 
-  obstacleColliding(element){
+/*   obstacleColliding(element){
     if( this.y <= element.y + (element.height - 60) && 
     this.y >= element.y && 
     this.x + this.width >= (element.x + 15) && 
@@ -154,6 +154,6 @@ class Player {
     } else  {
         return false
     }
-}
+} */
 
 }
