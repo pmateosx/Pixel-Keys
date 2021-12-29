@@ -35,7 +35,7 @@ class Game {
         ]
 
         this.obstacles = [
-            //new Obstacles(ctx, 650, -250, 'arbol'),
+            new Obstacles(ctx, 650, -250, 'arbol'),
             //new Obstacles(ctx, 350, -650, 'arbol')
         ]
 
@@ -79,12 +79,10 @@ class Game {
       }
 
     move() {
-        if(!this.checkObstacleColliding()){
-            this.moveKeys()
-            this.moveEnemys()
-            this.moveObstacles()
-            this.background.move()
-        }
+        this.moveKeys()
+        this.moveEnemys()
+        this.moveObstacles()
+        this.background.move()
         this.player.move()
     }
 
@@ -134,20 +132,6 @@ class Game {
 
         gameOverRestart.classList.remove("display-off")
         gameOverRestart.classList.add("display-on")
-
-
-        
-/*         this.ctx.save()
-    
-        this.ctx.fillStyle = 'rgba(0, 0, 0, 1)'
-        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
-    
-        this.ctx.fillStyle = 'white'
-        this.ctx.textAlign = 'center'
-        this.ctx.font = 'bold 32px sans-serif'
-        this.ctx.fillText(`Game Over!`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
-    
-        this.ctx.restore() */
     }
 
     checkTheNearest() {
@@ -340,13 +324,8 @@ class Game {
             sendInput.classList.remove("display-off")
             sendInput.classList.add("display-on")
 
-
-
             const diploma = document.getElementById('diploma')
-
             const name = document.getElementById('name')
-            
-            
             const sendButton = document.getElementById('send-button')
         
             sendButton.onclick = () => {
@@ -356,6 +335,17 @@ class Game {
              
               diploma.classList.remove("display-off")
               diploma.classList.add("display-on")
+
+              winScreen.classList.remove("display-on")
+              winScreen.classList.add("display-off")
+  
+              nameInput.classList.remove("display-on")
+              nameInput.classList.add("display-off")
+  
+              sendInput.classList.remove("display-on")
+              sendInput.classList.add("display-off")
+
+
           
             }
         }

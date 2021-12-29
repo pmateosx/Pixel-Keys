@@ -13,40 +13,54 @@
     <button id="home-button" class="display-off" onclick="window.location.href='https://pmateosx.github.io/Pixel-Keys/'">
         <img id="home-img" src="./assets/images/screens/home-button.png" alt="Home">
     </button>
-    
-    <!-- Win Screen -->
-    <img id="win-screen" class="display-off" src="./assets/images/screens/win-1.png" alt="win screen">
-    <button id="send-button" class="display-off">
-        <img src="./assets/images/screens/send-button.png" alt="send form">
-    </button>
-    <input id="name-input" class="display-off" type="text" placeholder="Write your name" required="">
+
+    <div class="canvas-container">
+
+        <!-- CANVAS -->
+        <canvas id="canvas" class="display-on" width="1600" height="1000"></canvas>
+
+        <img id="movements" src="./assets/images/game-ui/ui-control.png" alt="instrucciones">
+
+
+        <!-- Win Screen -->
+        <div class="win-container">
+            <img id="win-screen" class="display-off" src="./assets/images/screens/win-1.png" alt="win screen">
+
+            <div class="win-form">
+                <input id="name-input" class="display-off" type="text" placeholder="Write your name" required="">
+                <button id="send-button" class="display-off">
+                    <img src="./assets/images/screens/send-button.png" alt="send form">
+                </button>
+            </div>
+
+        </div>
+
+        <!-- GAME OVER -->
+        <div class="game-over-container">
+            <button id="game-over-button" class="display-off" onclick="window.location.href='https://pmateosx.github.io/Pixel-Keys/'">
+                <img id="game-over-img-button" src="./assets/images/screens/restart.png" alt="Home">
+            </button>
+        
+            <img id="game-over" class="display-off" src="./assets/images/screens/game-over-screen.png" alt="">
+        </div>
+    </div>
 
     <!-- DIPLOMA -->
-    <p id="name" class="display-off"></p>
-    <img id="diploma" class="display-off" src="./assets/images/screens/diploma_1.png" alt="diploma">
+    <div class="diplima">
+        <p id="name" class="display-off"></p>
+        <img id="diploma" class="display-off" src="./assets/images/screens/diploma_1.png" alt="diploma">
+    </div>
 
-    <!-- GAME OVER -->
-    <button id="game-over-button" class="display-off" onclick="window.location.href='https://pmateosx.github.io/Pixel-Keys/'">
-        <img id="game-over-img-button" src="./assets/images/screens/restart.png" alt="Home">
-    </button>
-
-    <img id="game-over" class="display-off" src="./assets/images/screens/game-over-screen.png" alt="">
-
-    <!-- CANVAS -->
-    <canvas id="canvas" class="display-on" width="1600" height="1000"></canvas>
 
     <img id="top-display" src="./assets/images/game-ui/top-display.png" alt="top display">
     <img id="game-logo" src="./assets/images/game-ui/game logo.png" alt="game logo">
     <img id="intro-text" src="./assets/images/game-ui/pantallaInicio.png" alt="intro-txt">
-   <!--  <p id="introText">Hi Adventurer! You have a new mission. Obtain all three keys from Aura before they are taken by The Marauder. Be careful, he is dangerous. defend yourself! <br> <br>Good luck!</p> -->
-
-   
 
     <button id="start-button">
         <img id="start-img" src="./assets/images/game-ui/start-button.png" alt="Start button">
     </button>
         
-    <img id="movements" src="./assets/images/game-ui/ui-control.png" alt="instrucciones">
+
 
     <img id="bottom-display" src="./assets/images/game-ui/top-display.png" alt="bottom display">
 
