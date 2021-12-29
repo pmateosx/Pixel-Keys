@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
     const introText = document.getElementById('intro-text')
     const movements = document.getElementById('movements')
     movements.style.display = 'none'
+    
 
     startButton.onclick = () => {
         game.start()

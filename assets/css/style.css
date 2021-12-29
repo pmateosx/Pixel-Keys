@@ -33,6 +33,10 @@ body{
     left: 1rem;
 }
 
+#home-img:hover{ 
+    transform: scale(1.1)
+}
+
 #intro-text{
     position: absolute;
     top: 35%;
