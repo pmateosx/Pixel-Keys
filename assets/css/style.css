@@ -184,3 +184,32 @@ body{
     font-family: monospace;
     text-align: center;
 }
+
+#game-over{
+    position: absolute;
+    z-index: 1;
+    top: 4rem;
+    left: 20rem;
+    width: 859px;
+    height: 500px;
+    image-rendering: pixelated;
+
+}
+
+#game-over-button{
+    position: absolute;
+    z-index: 3;
+    top: 24.7rem;
+    left: 45.5rem;
+    background: none;
+    border: none;
+}
+
+#game-over-img-button{
+    margin-top: 1rem;
+    height: 2.5rem;
+}
+
+#game-over-img-button:hover{ 
+    transform: scale(1.1)
+}

@@ -9,7 +9,9 @@ window.addEventListener('load', () => {
     const introText = document.getElementById('intro-text')
     const movements = document.getElementById('movements')
     movements.style.display = 'none'
-    
+
+    const homeButton = document.getElementById('home-button')
+
 
     startButton.onclick = () => {
         game.start()
@@ -17,6 +19,10 @@ window.addEventListener('load', () => {
         gameLogo.style.display = 'none'
         introText.style.display = 'none'
         movements.style.display = 'initial'
+
+        homeButton.classList.remove('display-off')
+        homeButton.classList.add('display-on')
+
     }
 
     window.addEventListener('keydown', (event) => {

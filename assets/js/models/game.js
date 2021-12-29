@@ -125,8 +125,19 @@ class Game {
 
     gameOver(){
         clearInterval(this.intervalId)
+
+        const gameOverScreen = document.getElementById('game-over')
+        const gameOverRestart = document.getElementById('game-over-button')
+
+        gameOverScreen.classList.remove("display-off")
+        gameOverScreen.classList.add("display-on")
+
+        gameOverRestart.classList.remove("display-off")
+        gameOverRestart.classList.add("display-on")
+
+
         
-        this.ctx.save()
+/*         this.ctx.save()
     
         this.ctx.fillStyle = 'rgba(0, 0, 0, 1)'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
@@ -136,7 +147,7 @@ class Game {
         this.ctx.font = 'bold 32px sans-serif'
         this.ctx.fillText(`Game Over!`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
     
-        this.ctx.restore()
+        this.ctx.restore() */
     }
 
     checkTheNearest() {
@@ -320,7 +331,6 @@ class Game {
         const sendInput = document.getElementById('send-button')
         if(this.keysTaken >= 3){
             this.stop()
-            this.keysTaken = 3
             winScreen.classList.remove("display-off")
             winScreen.classList.add("display-on")
 
