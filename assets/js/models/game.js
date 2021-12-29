@@ -309,15 +309,18 @@ class Game {
     }
 
     stop() {
+
         clearInterval(this.intervalId)
     }
 
     win(){
+        
         const winScreen = document.getElementById('win-screen')
         const nameInput = document.getElementById('name-input')
         const sendInput = document.getElementById('send-button')
-        if(this.keysTaken === 3){
+        if(this.keysTaken >= 3){
             this.stop()
+            this.keysTaken = 3
             winScreen.classList.remove("display-off")
             winScreen.classList.add("display-on")
 
