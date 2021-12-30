@@ -30,16 +30,35 @@ body{
 
 
 /* HOME BOTTON */
+.nav-buttons{
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 15;
+}
+
 #home-button{
     image-rendering: pixelated;
     background: none;
     border: none;
-    position: absolute;
-    top: 4rem;
-    left: 1rem;
+    outline:none;
 }
 
 #home-img:hover{ 
+    transform: scale(1.1)
+}
+
+#sound-button{
+    image-rendering: pixelated;
+    background: none;
+    border: none;
+    outline:none;
+    margin-left: -0.2rem;
+}
+
+#sound-img:hover{ 
     transform: scale(1.1)
 }
 

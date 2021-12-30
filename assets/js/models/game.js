@@ -52,15 +52,32 @@ class Game {
         this.img.onload = () => {
                 this.img.isReady = true
             }
-
         
+        
+        this.ambient = new Audio('./assets/sounds/ambient.mp3')
+        this.ambient.volume = 0.4
+        this.sound = new Audio('./assets/sounds/music-large.mp3')
+        this.sound.volume = 0.5
+        this.keySound = new Audio('./assets/sounds/keysound.mp3')
+        this.keySound.volume = 0.5
+        this.walkSound = new Audio('./assets/sounds/walk.mp3')
+        this.shot = new Audio('./assets/sounds/shot.mp3')
+        this.shot.volume = 0.2
+        
+            
     }
 
     start() {
         if(!this.intervalId){
+            this.ambient.loop = true
+            this.ambient.play()
+            this.sound.loop = true
+            this.sound.play()
+
             this.intervalId = setInterval(() => {
                 this.clear()
                 this.draw()
+                this.soundEffects()
                 this.move()
                 this.checkTheNearest() 
                 this.playerLife()
@@ -69,6 +86,7 @@ class Game {
                 this.clearEnemies()
                 this.checkPlayerDistance()
                 this.win()
+                this.soundButton()
                 
             }, this.fps)
         }
@@ -189,11 +207,14 @@ class Game {
         const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
 
         if(keyColliding){
+            this.keySound.currentTime = 0
+            this.keySound.play()
+
             this.keyPiece = this.keyPiece.filter(keyPiece => keyPiece !== keyColliding)
             this.keysTaken++
 
             // curamos al jugador
-            this.player.health += 25
+            this.player.health += 10
             if( this.player.health >= 100){
                 this.player.health = 100
             }
@@ -237,14 +258,15 @@ class Game {
         })
     }
 
-/*     checkObstacleColliding(){
+/*     PRUEBA CON OBSTACULOSBLOQUANDO MAPA
+        checkObstacleColliding(){
         this.obstacles.forEach(element => { // element = obstacle
-            if( this.player.y <= element.y + (element.height - 60) && 
+            if( this.player.y <= element.y + element.height && 
             this.player.y >= element.y && 
-            this.player.x + this.player.width >= (element.x + 15) && 
-            this.player.x <= (element.x + 15) + (element.width - 30) &&
-            this.player.y + this.player.height > element.y + (element.height - 60)
-            //this.previousY > element.y + (element.height - 60)
+            this.player.x + this.player.width >= element.x && 
+            this.player.x <= element.x + element.width &&
+            this.player.y + this.player.height > element.y + element.height
+            //this.previousY > element.y + element.height
             ){
                 return true
             } else  {
@@ -346,7 +368,41 @@ class Game {
               sendInput.classList.add("display-off")
           
             }
+        }   
+    }
+
+    soundEffects(){
+        if(this.player.isRunning){
+            this.walkSound.currentTime = 0
+            this.walkSound.play()
+            this.walkSound.volume = 0.03
+        } else {
+            this.walkSound.pause()
         }
-        
+
+ /*        console.log(this.player.isRunning); */
+    }
+
+    soundButton(){
+        const isPlaying = false;
+        const soundButton = document.getElementById('sound-button')
+
+/*         if(this.player.isShooting){
+            this.shot.play()
+        } */
+
+        soundButton.onclick = () => {
+            if (this.sound.paused || this.ambient.paused){
+                this.sound.play()
+                this.ambient.play()
+                this.keySound.volume = 0.4
+                this.walkSound.volume = 0.2
+            } else{
+              this.sound.pause()
+              this.ambient.pause()
+              this.keySound.volume = 0
+              this.walkSound.volume = 0
+          }
+        }
     }
 }
