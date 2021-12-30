@@ -63,6 +63,8 @@ class Game {
         this.walkSound = new Audio('./assets/sounds/walk.mp3')
         this.shot = new Audio('./assets/sounds/shot.mp3')
         this.shot.volume = 0.2
+        this.enemyDead = new Audio('./assets/sounds/enemy-dead.mp3')
+        this.enemyDead.volume = 0.2
         
             
     }
@@ -280,6 +282,8 @@ class Game {
           if(enemy.health <= 0){
               enemy.yFrame = 0
               enemy.xFrame = 0
+              this.enemyDead.currentTime = 0
+              this.enemyDead.play()
               
               setInterval(() =>{
                   enemy.xFrame++
@@ -387,6 +391,7 @@ class Game {
         const isPlaying = false;
         const soundButton = document.getElementById('sound-button')
 
+        // hacer sonido para disparo
 /*         if(this.player.isShooting){
             this.shot.play()
         } */
