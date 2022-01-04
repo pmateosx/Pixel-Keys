@@ -71,8 +71,6 @@ class Player {
         this.ticks++
     }
   
-
-    
     // disparar
     if(this.isShooting && this.enemyDistance <= 400){
       this.shot()
@@ -132,14 +130,24 @@ class Player {
       )
   }
 
+  bulletImpact(enemyBullet){
+    return (
+      this.x < (enemyBullet.x + enemyBullet.width - 20) &&
+      this.x + this.width > (enemyBullet.x + 30) &&
+      this.y < (enemyBullet.y + enemyBullet.height -40) &&
+      this.y + this.height > (enemyBullet.y + 20)
+    )
+  }
+
   shot() {
     if(this.ticks % 10 === 0 && this.nearestEnemy){
       // calcalmos el trayectoria con la formula
       let dx = (this.nearestEnemy.x + 30) - this.x
-      let dy = (this.nearestEnemy.y +30) - this.y
+      let dy = (this.nearestEnemy.y + 30) - this.y
       let angle = Math.atan2(dx, dy) 
-
-      this.bullets.push(new Bullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed))
+      this.bullets.push(
+        new Bullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
+        )
     }
   }
 

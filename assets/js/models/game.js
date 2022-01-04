@@ -13,7 +13,7 @@ class Game {
 
         this.enemy = [
             //enemigo de pruebas
-            new Enemy(ctx, 350, 150),
+            //new Enemy(ctx, 350, 150),
 
              // primera llave
             new Enemy(ctx, -650, -250),
@@ -35,7 +35,7 @@ class Game {
         ]
 
         this.obstacles = [
-            new Obstacles(ctx, 650, -250, 'arbol'),
+            //new Obstacles(ctx, 650, -250, 'arbol'),
             //new Obstacles(ctx, 350, -650, 'arbol')
         ]
 
@@ -55,7 +55,7 @@ class Game {
         
         
         this.ambient = new Audio('./assets/sounds/ambient.mp3')
-        this.ambient.volume = 0.4
+        this.ambient.volume = 0.2
         this.sound = new Audio('./assets/sounds/music-large.mp3')
         this.sound.volume = 0.5
         this.keySound = new Audio('./assets/sounds/keysound.mp3')
@@ -79,15 +79,15 @@ class Game {
             this.intervalId = setInterval(() => {
                 this.clear()
                 this.draw()
+                this.win()
+                this.gameOver()
                 this.soundEffects()
                 this.move()
                 this.checkTheNearest() 
                 this.playerLife()
                 this.checkCollision()
-                this.checkHealthEnemy()
-                this.clearEnemies()
                 this.checkPlayerDistance()
-                this.win()
+                this.checkHealthEnemy()
                 this.soundButton()
                 
             }, this.fps)
@@ -142,16 +142,18 @@ class Game {
     }
 
     gameOver(){
-        clearInterval(this.intervalId)
+        if(this.player.health <= 0){
+            this.stop()
+            const gameOverScreen = document.getElementById('game-over')
+            const gameOverRestart = document.getElementById('game-over-button')
+    
+            gameOverScreen.classList.remove("display-off")
+            gameOverScreen.classList.add("display-on")
+    
+            gameOverRestart.classList.remove("display-off")
+            gameOverRestart.classList.add("display-on")
+        }
 
-        const gameOverScreen = document.getElementById('game-over')
-        const gameOverRestart = document.getElementById('game-over-button')
-
-        gameOverScreen.classList.remove("display-off")
-        gameOverScreen.classList.add("display-on")
-
-        gameOverRestart.classList.remove("display-off")
-        gameOverRestart.classList.add("display-on")
     }
 
     checkTheNearest() {
@@ -235,9 +237,6 @@ class Game {
     
         if(enemyColliding && this.player.ticks % 100 === 0){
             this.player.health -= 20
-            if(this.player.health <= 0){ 
-                this.gameOver()
-            }
         } 
 
         // colision de balas con enemigo
@@ -249,16 +248,34 @@ class Game {
                 }
             })
         })
+
+        // colision de balas enemigas con player
+
+        this.enemy.forEach(enemyUnit =>{
+            enemyUnit.enemyBullets.forEach((enemyBulletUnit, index) => {
+                if(this.player.bulletImpact(enemyBulletUnit)){
+                    this.player.health -= enemyBulletUnit.damage
+                    //enemyUnit.enemyBullets.splice(index, 1)
+                }
+            })
+        })
+
+/*         this.enemy.enemyBullets.forEach((enemyBulletUnit, index) => {
+            if(this.player.bulletImpact(enemyBulletUnit)){
+                this.player.health -= enemyBulletUnit.damage
+                this.enemy.enemyBullets.splice(index, 1)
+            }
+        }) */
     }
 
-    checkObstacleColliding(){   
+ /*    checkObstacleColliding(){   
         const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
         
         
         this.obstacles.forEach(obstacle => {
             this.player.obstacleColliding(obstacle)
         })
-    }
+    } */
 
 /*     PRUEBA CON OBSTACULOSBLOQUANDO MAPA
         checkObstacleColliding(){
@@ -279,25 +296,26 @@ class Game {
 
     checkHealthEnemy(){
         this.enemy.forEach(enemy => {
-          if(enemy.health <= 0){
-              enemy.yFrame = 0
-              enemy.xFrame = 0
-              this.enemyDead.currentTime = 0
-              this.enemyDead.play()
-              
-              setInterval(() =>{
-                  enemy.xFrame++
-              },this.fps)
-              setTimeout(this.clearEnemies, 3000)
-          }
+            if(enemy.health <= 0){
+                enemy.yFrame = 0
+                enemy.xFrame = 0
+                this.enemyDead.currentTime = 0
+                this.enemyDead.play()
+                
+                setInterval(() =>{
+                    enemy.xFrame++
+                }, this.fps)
+                setTimeout(this.clearEnemies(), 1500)
+            }
         })
     }
-
+    
     clearEnemies() {
-      if(this.enemy.length > 0){
-        this.enemy = this.enemy.filter(enemyUnit => enemyUnit.health > 0)
+        if(this.enemy.length > 0){
+          this.enemy = this.enemy.filter(enemyUnit => enemyUnit.health > 0)
+        }
       }
-    }
+
 
     playerLife(){
         // vida del player
@@ -330,7 +348,6 @@ class Game {
     }
 
     stop() {
-
         clearInterval(this.intervalId)
     }
 
@@ -400,11 +417,13 @@ class Game {
             if (this.sound.paused || this.ambient.paused){
                 this.sound.play()
                 this.ambient.play()
+                this.enemyDead.volume = 0.2
                 this.keySound.volume = 0.4
                 this.walkSound.volume = 0.2
             } else{
               this.sound.pause()
               this.ambient.pause()
+              this.enemyDead.volume = 0
               this.keySound.volume = 0
               this.walkSound.volume = 0
           }

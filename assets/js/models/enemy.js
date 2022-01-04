@@ -11,6 +11,10 @@ class Enemy {
     this.vx = 0
     this.vy = 0
 
+    this.isShooting = false
+    this.enemyBullets = []
+    this.shotSpeed = 6
+
     this.playerX = (this.ctx.canvas.width / 2) - (this.width/2)
     this.playerY = (this.ctx.canvas.height / 2) - (this.height/2)
 
@@ -61,6 +65,7 @@ class Enemy {
         this.width,
         this.height
     )
+    //barra de vida enemigos
 
     if(this.health > 0){
       const lifePointsBar = this.health * this.width /300
@@ -82,6 +87,10 @@ class Enemy {
               this.xFrame = 0
           }
         }
+    }
+
+    if(this.playerDistance <= 400){
+      this.shot()
     }
 
   }
@@ -107,75 +116,87 @@ class Enemy {
     }
     }
 
-    collidesWith(bullet){
-      const xPadding = 60
-      const yPadding = 70
-      return (
-        this.x + xPadding < (bullet.x + bullet.width) &&
-        this.x + this.width - xPadding > (bullet.x) &&
-        this.y + yPadding < (bullet.y + bullet.height) &&
-        this.y + this.height - yPadding > (bullet.y)
-      )
-    }
-
-    // formula mágica del angulo
-    getPlayerAngle() {
-      this.dx = this.playerX - this.x
-      this.dy = this.playerY - this.y
-      this.angle = Math.atan2(this.dx, this.dy)
-
-      this.vx = Math.sin(this.angle)
-      this.vy = Math.cos(this.angle)
-
+  collidesWith(bullet){
+    const xPadding = 60
+    const yPadding = 70
+    return (
+      this.x + xPadding < (bullet.x + bullet.width) &&
+      this.x + this.width - xPadding > (bullet.x) &&
+      this.y + yPadding < (bullet.y + bullet.height) &&
+      this.y + this.height - yPadding > (bullet.y)
+    )
   }
 
-    move(){
-      if(this.playerDistance <= 350){
-        this.getPlayerAngle()
-        this.x += this.vx * (this.speed - 3)
-        this.y += this.vy * (this.speed - 3) 
-      }
+  // formula mágica del angulo
+  getPlayerAngle() {
+    this.dx = this.playerX - this.x
+    this.dy = this.playerY - this.y
+    this.angle = Math.atan2(this.dx, this.dy)
 
-      if (!this.movements.right && !this.movements.left) {
-        this.vx = 0
-      }
-      if (!this.movements.up && !this.movements.down) {
-        this.vy = 0
-      }
+    this.vx = Math.sin(this.angle)
+    this.vy = Math.cos(this.angle)
+}
 
-      if (this.movements.right) {
-        this.vx = -this.speed
-      }
-      if (this.movements.left) {
-        this.vx = this.speed
-      }
-      
-      if (this.movements.up) {
-          this.vy = this.speed
-      }
-      if (this.movements.down) {
-          this.vy = -this.speed
-      }
-
-      if (this.isBackgroundColliding !== 'left' && this.isBackgroundColliding !== 'right') {
-        this.x += this.vx
-      }
-
-      if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
-        this.y += this.vy
-      }
+  move(){
+    if(this.playerDistance <= 400){
       this.getPlayerAngle()
-      if(this.angle <= 3 && this.angle >= 1.5){
-        this.yFrame = 1
-      } else if (this.angle <= 1.5 && this.angle >= 0.5){
-        this.yFrame = 5
-      } else if (this.angle <= 0.5 && this.angle >= -1.5){
-        this.yFrame = 5
-      } else if (this.angle <= -1.5 && this.angle >= -3){
-        this.yFrame = 4
-      } else {
-        this.yFrame = 2
-      }
-
+      this.x += this.vx * (this.speed - 3)
+      this.y += this.vy * (this.speed - 3) 
     }
+
+    if (!this.movements.right && !this.movements.left) {
+      this.vx = 0
+    }
+    if (!this.movements.up && !this.movements.down) {
+      this.vy = 0
+    }
+
+    if (this.movements.right) {
+      this.vx = -this.speed
+    }
+    if (this.movements.left) {
+      this.vx = this.speed
+    }
+    
+    if (this.movements.up) {
+        this.vy = this.speed
+    }
+    if (this.movements.down) {
+        this.vy = -this.speed
+    }
+
+    if (this.isBackgroundColliding !== 'left' && this.isBackgroundColliding !== 'right') {
+      this.x += this.vx
+    }
+
+    if (this.isBackgroundColliding !== 'top' && this.isBackgroundColliding !== 'bottom') {
+      this.y += this.vy
+    }
+
+    this.getPlayerAngle()
+    if(this.angle <= 3 && this.angle >= 1.5){
+      this.yFrame = 1
+    } else if (this.angle <= 1.5 && this.angle >= 0.5){
+      this.yFrame = 5
+    } else if (this.angle <= 0.5 && this.angle >= -1.5){
+      this.yFrame = 5
+    } else if (this.angle <= -1.5 && this.angle >= -3){
+      this.yFrame = 4
+    } else {
+      this.yFrame = 2
+    }
+  }
+
+  shot() {
+    if(this.ticks % 10 === 0 && this.playerDistance <= 400){
+      // calcalmos el trayectoria con la formula
+      let dx = (this.playerX) - this.x
+      let dy = (this.playerY) - this.y
+      let angle = Math.atan2(dx, dy)
+
+      this.enemyBullets.push(
+        new EnemyBullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
+        )
+    }
+  }
 }
