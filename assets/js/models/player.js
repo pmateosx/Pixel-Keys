@@ -144,7 +144,8 @@ class Player {
       // calcalmos el trayectoria con la formula
       let dx = (this.nearestEnemy.x + 30) - this.x
       let dy = (this.nearestEnemy.y + 30) - this.y
-      let angle = Math.atan2(dx, dy) 
+      let angle = Math.atan2(dx, dy)
+      
       this.bullets.push(
         new Bullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
         )

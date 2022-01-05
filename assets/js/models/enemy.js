@@ -54,6 +54,7 @@ class Enemy {
 
   draw(){
     if(this.img.isReady){
+      this.enemyBullets.forEach(oneEnemyBullet => oneEnemyBullet.draw())
       this.ctx.drawImage(
         this.img,
         (this.img.width * this.xFrame) / this.horizontalFrames,
@@ -89,10 +90,8 @@ class Enemy {
         }
     }
 
-    if(this.playerDistance <= 400){
-      this.shot()
-    }
-
+    // disparo 
+    this.shot()
   }
 
   setupListeners(event) {
@@ -190,13 +189,15 @@ class Enemy {
   shot() {
     if(this.ticks % 10 === 0 && this.playerDistance <= 400){
       // calcalmos el trayectoria con la formula
-      let dx = (this.playerX) - this.x
-      let dy = (this.playerY) - this.y
+      let dx = this.playerX - this.x
+      let dy = this.playerY - this.y
       let angle = Math.atan2(dx, dy)
 
       this.enemyBullets.push(
         new EnemyBullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
         )
+
+        console.log(Math.sin(angle) * this.shotSpeed);
     }
   }
 }

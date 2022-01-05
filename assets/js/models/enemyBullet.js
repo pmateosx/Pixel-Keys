@@ -50,8 +50,6 @@ class EnemyBullet {
                     this.height
                 )
             }
-            console.log('balaaaa');
-    
             this.ticks++
             
             if(this.ticks % 10 === 0) {

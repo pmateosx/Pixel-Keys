@@ -9,11 +9,10 @@ body{
 }
 
 .display-on {
-    visibility: visible;
 }
 
 .display-off{
-    visibility: hidden;
+    display: none;
 }
 
 #top-display{
@@ -167,7 +166,6 @@ body{
     cursor: text;
     text-align: center;
 }
-
 
 /* GAME OVER SCREEN */
 .game-over-container{

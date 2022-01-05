@@ -255,7 +255,7 @@ class Game {
             enemyUnit.enemyBullets.forEach((enemyBulletUnit, index) => {
                 if(this.player.bulletImpact(enemyBulletUnit)){
                     this.player.health -= enemyBulletUnit.damage
-                    //enemyUnit.enemyBullets.splice(index, 1)
+                    enemyUnit.enemyBullets.splice(index, 1)
                 }
             })
         })
