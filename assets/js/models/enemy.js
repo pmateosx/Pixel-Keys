@@ -13,7 +13,7 @@ class Enemy {
 
     this.isShooting = false
     this.enemyBullets = []
-    this.shotSpeed = 6
+    this.shotSpeed = 2
 
     this.playerX = (this.ctx.canvas.width / 2) - (this.width/2)
     this.playerY = (this.ctx.canvas.height / 2) - (this.height/2)
@@ -137,6 +137,10 @@ class Enemy {
 }
 
   move(){
+    //movemos la bala
+    this.enemyBullets.forEach(bullets => bullets.move())
+
+    //movemos al personaje
     if(this.playerDistance <= 400){
       this.getPlayerAngle()
       this.x += this.vx * (this.speed - 3)
@@ -187,7 +191,7 @@ class Enemy {
   }
 
   shot() {
-    if(this.ticks % 10 === 0 && this.playerDistance <= 400){
+    if(this.ticks % 90 === 0 && this.playerDistance <= 400){
       // calcalmos el trayectoria con la formula
       let dx = this.playerX - this.x
       let dy = this.playerY - this.y

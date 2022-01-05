@@ -13,7 +13,7 @@ class Game {
 
         this.enemy = [
             //enemigo de pruebas
-            //new Enemy(ctx, 350, 150),
+            new Enemy(ctx, 350, 150),
 
              // primera llave
             new Enemy(ctx, -650, -250),
