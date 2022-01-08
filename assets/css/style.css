@@ -63,22 +63,26 @@ body{
 
 
 /* INTRO SCREEN */
-#intro-text{
+.intro-screen{
     position: absolute;
-    top: 35%;
+    top: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#intro-text{
     image-rendering: pixelated;
 }
 
 #game-logo{
-    position: absolute;
-    top: 5rem;
+    margin-bottom: 3rem;
     image-rendering: pixelated;
 }
 
 #start-button{
-    position: absolute;
-    margin: 0 auto;
-    transform: translateY(16rem);
+    margin: 3rem;
     background: none;
     border: none;
     z-index: 10;
@@ -96,6 +100,8 @@ body{
 
 /* CANVAS */
 .canvas-container{
+    position: absolute;
+    top: 3%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -204,11 +210,11 @@ body{
 /* DIPLOMA */
 .diplima{
     position: absolute; 
+    top: 3%;
     z-index: 5;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10rem;
 }
 
 #diploma{

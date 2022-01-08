@@ -5,7 +5,7 @@ class EnemyBullet {
         this.x = x
         this.y = y
 
-        this.damage = 15
+        this.damage = 5
 
         this.width = 14*5
         this.height = 14*5
