@@ -31,15 +31,15 @@ Try yourself!
 
 <!-- Info -->
 ### 📜 **About Project**
+<p>
 Juego corto completamente desarrollado en canvas y JS. Todos los elementos del mapa tienen un movimiento con el que conseguimos la sensación de desplazamiento. El personaje únicamente capta la dirección, y son el resto de elementos los que se desplazan. 
-
-<br>
-
+</p>
+<p>
 Los enemigos tienen un pequeño area de acción donde, si el personaje supera su limite, el enemigo lo perseguirá.
-
-<br>
-
+</p>
+<p>
 Al conseguir las 3 llaves, se despliega un pequeño cartel donde se nos da la enorabuena y nos piden introducir nuestro nombre en un formulario. Ese nombre se imprime en un diploma que nos certifica como autenticos (enrealidad no) aventureros.
+</p>
 <br>
 
 ### 🎯 **Built With**
