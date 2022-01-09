@@ -6,9 +6,9 @@ class Game {
         this.player = new Player(ctx)
 
         this.potionArray = [
-            new Potion(ctx, 650, -250),
-            new Potion(ctx, 960, -1900),
-            new Potion(ctx, 960, -3100)
+            new Potion(ctx, -250, 550),
+            new Potion(ctx, -450, -1600),
+            new Potion(ctx, 850, -2200)
         ]
 
         this.keyPiece = [
