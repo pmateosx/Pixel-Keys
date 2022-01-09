@@ -6,9 +6,9 @@ Pixel Keys is a little canvas game where you can move around the map. Try to kil
 
 <!-- GETTING STARTED -->
 # ⌨️ **Instructions**
-Muevete por todo el mapa buscando las llaves y ten cuidado con los enemigos que te atacaran cuando pases cerca de ellos! 
-<br>
-Los controles son muy sencillos <br>
+Move around the map looking for the keys but be careful with the enemies, they will attack you when you pass near them!
+<br> 
+The controls are very easy<br>
 Move with the arrows:  ➡️ ⬅️ ⬆️ ⬇️ <br>
 Shot with the spacebar: 〰
 <br>
@@ -32,13 +32,13 @@ Try yourself!
 <!-- Info -->
 ### 📜 **About Project**
 <p>
-Juego corto completamente desarrollado en canvas y JS. Todos los elementos del mapa tienen un movimiento con el que conseguimos la sensación de desplazamiento. El personaje únicamente capta la dirección, y son el resto de elementos los que se desplazan. 
+Short game fully developed with canvas and JS. All the elements of the map have a movement with which we get the feeling of displacement. The character only gets the direction, it's the rest of the elements that move.
 </p>
 <p>
-Los enemigos tienen un pequeño area de acción donde, si el personaje supera su limite, el enemigo lo perseguirá.
+The player will be chased and attacked if he enters the enemy's range of action. If the player's life reaches 0, the game will end. Don't worry, you can recover life by collecting the hearts that are on the map.
 </p>
 <p>
-Al conseguir las 3 llaves, se despliega un pequeño cartel donde se nos da la enorabuena y nos piden introducir nuestro nombre en un formulario. Ese nombre se imprime en un diploma que nos certifica como autenticos (enrealidad no) aventureros.
+Afeter obtaining the 3 keys, a small poster is displayed where we are congratulated and asked to enter our name in a form. That name is printed on a diploma certifying us as authentic (not really) adventurers.
 </p>
 
 ### 🎯 **Built With**

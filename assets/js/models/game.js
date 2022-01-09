@@ -229,8 +229,9 @@ class Game {
 
         if(potionColliding){
             this.potionArray = this.potionArray.filter(onePotion => onePotion !== potionColliding)
+            
+            this.player.health += 30
 
-            this.player.health += 25
             if( this.player.health >= 100){
                 this.player.health = 100
             }
