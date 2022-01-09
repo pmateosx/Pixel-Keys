@@ -40,7 +40,6 @@ Los enemigos tienen un pequeño area de acción donde, si el personaje supera su
 <p>
 Al conseguir las 3 llaves, se despliega un pequeño cartel donde se nos da la enorabuena y nos piden introducir nuestro nombre en un formulario. Ese nombre se imprime en un diploma que nos certifica como autenticos (enrealidad no) aventureros.
 </p>
-<br>
 
 ### 🎯 **Built With**
 * Vanilla JavaScript 
