@@ -3,12 +3,10 @@
 Pixel Keys is a little canvas game where you can move around the map. Try to kill all enemies and get three keys to get your adventurer license.
 <br/>
 </p>
-<br>
 
 <!-- GETTING STARTED -->
 # ⌨️ **Instructions**
 Muevete por todo el mapa buscando las llaves y ten cuidado con los enemigos que te atacaran cuando pases cerca de ellos! 
-<br>
 <br>
 Los controles son muy sencillos
 Move with the arrows:  ➡️ ⬅️ ⬆️ ⬇️ <br>
@@ -22,8 +20,6 @@ Try yourself!
 
 <!-- screenshot -->
 ## 🕹 **Screenshots**
-<hr>
-
 <img src="./assets/images/readme-img/intro-screenshot.png" alt="screenshot-intro">
 <br>
 <img src="./assets/images/readme-img/map-screenshot.png" alt="screenshot-intro">
@@ -32,11 +28,9 @@ Try yourself!
 <img src="./assets/images/readme-img/license-screenshot.png" alt="screenshot-intro">
 <img src="./assets/images/readme-img/game-over-screenshot.png" alt="screenshot-intro">
 <br>
-<br>
 
 <!-- Info -->
 ### 📜 **About Project**
-<br>
 Juego corto completamente desarrollado en canvas y JS. Todos los elementos del mapa tienen un movimiento con el que conseguimos la sensación de desplazamiento. El personaje únicamente capta la dirección, y son el resto de elementos los que se desplazan. 
 
 <br>
@@ -47,8 +41,6 @@ Los enemigos tienen un pequeño area de acción donde, si el personaje supera su
 
 Al conseguir las 3 llaves, se despliega un pequeño cartel donde se nos da la enorabuena y nos piden introducir nuestro nombre en un formulario. Ese nombre se imprime en un diploma que nos certifica como autenticos (enrealidad no) aventureros.
 <br>
-<br>
-
 
 ### 🎯 **Built With**
 * Vanilla JavaScript 
