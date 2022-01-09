@@ -200,8 +200,6 @@ class Enemy {
       this.enemyBullets.push(
         new EnemyBullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
         )
-
-        console.log(Math.sin(angle) * this.shotSpeed);
     }
   }
 }

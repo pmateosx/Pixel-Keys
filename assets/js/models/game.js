@@ -5,6 +5,12 @@ class Game {
         this.background = new Background(ctx)
         this.player = new Player(ctx)
 
+        this.potionArray = [
+            new Potion(ctx, 650, -250),
+            new Potion(ctx, 960, -1900),
+            new Potion(ctx, 960, -3100)
+        ]
+
         this.keyPiece = [
             new keyPiece(ctx, -750, 100),
             new keyPiece(ctx, 950, -1800),
@@ -102,6 +108,7 @@ class Game {
 
     move() {
         this.moveKeys()
+        this.movePotions()
         this.moveEnemys()
         this.moveObstacles()
         this.background.move()
@@ -126,12 +133,19 @@ class Game {
         this.obstacles.forEach(obstacle=> obstacle.move())
     }
 
+    movePotions(){
+        const colliding = this.background.isBackgroundColliding()
+        this.potionArray.forEach(onePotion => onePotion.setBackgroundColliding(colliding))
+        this.potionArray.forEach(onePotion => onePotion.move())
+    }
+
     draw() {
         this.background.draw()
         this.playerLife()
         this.keyPiece.forEach(keyPiece => keyPiece.draw())
         this.obstacles.forEach(obstacles => obstacles.draw())
         this.enemy.forEach(enemy => enemy.draw())
+        this.potionArray.forEach(onePotion => onePotion.draw())
         this.player.draw()
     }
 
@@ -139,6 +153,7 @@ class Game {
         this.background.setupListeners(event)
         this.player.setupListeners(event)
         this.keyPiece.forEach(key => key.setupListeners(event))
+        this.potionArray.forEach(onePotion => onePotion.setupListeners(event))
         this.enemy.forEach(enemy => enemy.setupListeners(event))
         this.obstacles.forEach(obstacles => obstacles.setupListeners(event))
     }
@@ -147,13 +162,13 @@ class Game {
         if(this.player.health <= 0){
             this.stop()
             const gameOverScreen = document.getElementById('game-over')
-            const gameOverRestart = document.getElementById('game-over-button')
+/*             const gameOverRestart = document.getElementById('game-over-button') */
     
             gameOverScreen.classList.remove("display-off")
             gameOverScreen.classList.add("display-on")
     
-            gameOverRestart.classList.remove("display-off")
-            gameOverRestart.classList.add("display-on")
+/*             gameOverRestart.classList.remove("display-off")
+            gameOverRestart.classList.add("display-on") */
         }
 
     }
@@ -209,6 +224,18 @@ class Game {
     } 
 
     checkCollision(){
+        // colision con pociones
+        const potionColliding = this.potionArray.find(onePotion => this.player.collidesWith(onePotion))
+
+        if(potionColliding){
+            this.potionArray = this.potionArray.filter(onePotion => onePotion !== potionColliding)
+
+            this.player.health += 25
+            if( this.player.health >= 100){
+                this.player.health = 100
+            }
+        }
+
         // colision con llave        
         const keyColliding = this.keyPiece.find(keyPiece => this.player.collidesWith(keyPiece))
 
@@ -220,10 +247,10 @@ class Game {
             this.keysTaken++
 
             // curamos al jugador
-            this.player.health += 100
+          /*   this.player.health += 10
             if( this.player.health >= 100){
                 this.player.health = 100
-            }
+            } */
 
             // metemos mas enemigos en el mapa
 /*              this.enemy.push(
@@ -233,6 +260,8 @@ class Game {
                 new Enemy (this.ctx, this.player.x + 350, this.player.y - 350)
             )  */
         }
+
+
 
         // colision con enemigo
         const enemyColliding = this.enemy.find(enemy => this.player.collidesWith(enemy))
@@ -301,7 +330,7 @@ class Game {
             if(enemy.health <= 0){
                 enemy.yFrame = 0
                 enemy.xFrame = 0
-                this.enemyDead.currentTime = 0
+                /* this.enemyDead.currentTime = 0 */
                 this.enemyDead.play()
                 
                 setInterval(() =>{
@@ -411,7 +440,6 @@ class Game {
         }
     }
 
- /*        console.log(this.player.isRunning); */
 
     soundButton(){
         const soundButton = document.getElementById('sound-button')
