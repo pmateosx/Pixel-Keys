@@ -9,6 +9,7 @@ body{
 }
 
 .display-on {
+    display: inherit;
 }
 
 .display-off{
@@ -210,7 +211,7 @@ body{
 /* DIPLOMA */
 .diplima{
     position: absolute; 
-    top: 3%;
+    top: 7%;
     z-index: 5;
     display: flex;
     justify-content: center;

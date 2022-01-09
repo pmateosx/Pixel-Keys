@@ -75,6 +75,8 @@ class Game {
             this.ambient.play()
             this.sound.loop = true
             this.sound.play()
+            this.walkSound.loop = true
+            this.walkSound.play()
 
             this.intervalId = setInterval(() => {
                 this.clear()
@@ -218,7 +220,7 @@ class Game {
             this.keysTaken++
 
             // curamos al jugador
-            this.player.health += 10
+            this.player.health += 100
             if( this.player.health >= 100){
                 this.player.health = 100
             }
@@ -305,7 +307,7 @@ class Game {
                 setInterval(() =>{
                     enemy.xFrame++
                 }, this.fps)
-                setTimeout(this.clearEnemies(), 1500)
+                setTimeout(() => this.clearEnemies(), 1000)
             }
         })
     }
@@ -349,6 +351,10 @@ class Game {
 
     stop() {
         clearInterval(this.intervalId)
+        this.ambient.pause()
+        this.enemyDead.volume = 0
+        this.keySound.volume = 0
+        this.walkSound.pause()
     }
 
     win(){
@@ -358,6 +364,11 @@ class Game {
         const sendInput = document.getElementById('send-button')
         if(this.keysTaken >= 3){
             this.stop()
+            this.ambient.pause()
+            this.enemyDead.volume = 0
+            this.keySound.volume = 0
+            this.walkSound.pause()
+
             winScreen.classList.remove("display-off")
             winScreen.classList.add("display-on")
 
@@ -394,18 +405,15 @@ class Game {
 
     soundEffects(){
         if(this.player.isRunning){
-            this.walkSound.currentTime = 0
-            this.walkSound.play()
-            this.walkSound.volume = 0.03
+          this.walkSound.volume = 0.3
         } else {
-            this.walkSound.pause()
+          this.walkSound.volume = 0
         }
-
- /*        console.log(this.player.isRunning); */
     }
 
+ /*        console.log(this.player.isRunning); */
+
     soundButton(){
-        const isPlaying = false;
         const soundButton = document.getElementById('sound-button')
 
         // hacer sonido para disparo
@@ -419,13 +427,14 @@ class Game {
                 this.ambient.play()
                 this.enemyDead.volume = 0.2
                 this.keySound.volume = 0.4
-                this.walkSound.volume = 0.2
+                this.walkSound.play()
+
             } else{
               this.sound.pause()
               this.ambient.pause()
               this.enemyDead.volume = 0
               this.keySound.volume = 0
-              this.walkSound.volume = 0
+              this.walkSound.pause()
           }
         }
     }
