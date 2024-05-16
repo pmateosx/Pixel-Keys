@@ -7,8 +7,6 @@ window.addEventListener('load', () => {
     const startButton = document.getElementById('start-button')
     const gameLogo = document.getElementById('game-logo')
     const introText = document.getElementById('intro-text')
-    const movements = document.getElementById('movements')
-    movements.style.display = 'none'
 
     const homeButton = document.getElementById('home-button')
 
@@ -18,7 +16,6 @@ window.addEventListener('load', () => {
         startButton.style.display = 'none'
         gameLogo.style.display = 'none'
         introText.style.display = 'none'
-        movements.style.display = 'initial'
 
         homeButton.classList.remove('display-off')
         homeButton.classList.add('display-on')

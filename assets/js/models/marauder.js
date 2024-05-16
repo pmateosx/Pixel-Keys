@@ -88,18 +88,18 @@ class Marauder {
     const status = event.type === 'keydown'
 
     switch(event.keyCode) {
-        case KEY_UP:
-        this.movements.up = status
-        break
-        case KEY_DOWN:
-        this.movements.down = status
-        break
-        case KEY_RIGHT:
-        this.movements.right = status
-        break
-        case KEY_LEFT:
-        this.movements.left = status
-        break
+        case KEY_W:
+            this.movements.up = status
+            break
+          case KEY_S:
+            this.movements.down = status
+            break
+          case KEY_D:
+            this.movements.right = status
+            break
+          case KEY_A:
+            this.movements.left = status
+            break
         default:
         break
     }

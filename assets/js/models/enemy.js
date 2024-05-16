@@ -98,16 +98,16 @@ class Enemy {
     const status = event.type === 'keydown'
 
     switch(event.keyCode) {
-      case KEY_UP:
+      case KEY_W:
         this.movements.up = status
         break
-      case KEY_DOWN:
+      case KEY_S:
         this.movements.down = status
         break
-      case KEY_RIGHT:
+      case KEY_D:
         this.movements.right = status
         break
-      case KEY_LEFT:
+      case KEY_A:
         this.movements.left = status
         break
       default:
@@ -141,7 +141,7 @@ class Enemy {
     this.enemyBullets.forEach(bullets => bullets.move())
 
     //movemos al personaje
-    if(this.playerDistance <= 400){
+    if(this.playerDistance <= 650){
       this.getPlayerAngle()
       this.x += this.vx * (this.speed - 3)
       this.y += this.vy * (this.speed - 3) 
@@ -191,7 +191,7 @@ class Enemy {
   }
 
   shot() {
-    if(this.ticks % 90 === 0 && this.playerDistance <= 400){
+/*     if(this.ticks % 90 === 0 && this.playerDistance <= 400){
       // calcalmos el trayectoria con la formula
       let dx = this.playerX - this.x
       let dy = this.playerY - this.y
@@ -200,6 +200,6 @@ class Enemy {
       this.enemyBullets.push(
         new EnemyBullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
         )
-    }
+    } */
   }
 }

@@ -93,20 +93,30 @@ class Player {
     const status = event.type === 'keydown'
 
     switch(event.keyCode) {
-      case KEY_UP:
+      case KEY_W:
         this.movements.up = status
         break
-      case KEY_DOWN:
+      case KEY_S:
         this.movements.down = status
         break
-      case KEY_RIGHT:
+      case KEY_D:
         this.movements.right = status
         break
-      case KEY_LEFT:
+      case KEY_A:
         this.movements.left = status
         break
-      case SPACE_BAR:
-        this.isShooting = status
+
+      case KEY_UP:
+        this.shot('up')
+        break
+      case KEY_DOWN:
+        this.shot('down')
+        break
+      case KEY_RIGHT:
+        this.shot('right')
+        break
+      case KEY_LEFT:
+        this.shot('left')
         break
       default:
         break
@@ -139,16 +149,35 @@ class Player {
     )
   }
 
-  shot() {
-    if(this.ticks % 10 === 0 && this.nearestEnemy){
-      // calcalmos el trayectoria con la formula
-      let dx = (this.nearestEnemy.x + 30) - this.x
-      let dy = (this.nearestEnemy.y + 30) - this.y
-      let angle = Math.atan2(dx, dy)
-      
-      this.bullets.push(
-        new Bullet(this.ctx, this.x + (this.width/2 -30), (this.y + 20), Math.sin(angle) * this.shotSpeed, Math.cos(angle) * this.shotSpeed)
-        )
+  shot(direction) {
+
+    if(this.ticks % 2 === 0){
+      let angle = 0
+      this.tick = 0
+
+     switch (direction) {
+      case 'right':
+        angle = Math.PI / 2;
+        break;
+      case 'left':
+        angle = -Math.PI / 2;
+        break;
+      case 'down':
+        angle = 0;
+        break;
+      case 'up':
+        angle = Math.PI;
+        break;
+      default:
+        break;
+     }
+
+    let dx = Math.sin(angle) * this.shotSpeed;
+    let dy = Math.cos(angle) * this.shotSpeed;
+
+    this.bullets.push(
+      new Bullet(this.ctx, this.x + (this.width / 2 - 30), this.y + 20, dx, dy)
+    );
     }
   }
 

@@ -9,8 +9,8 @@ Pixel Keys is a little canvas game where you can move around the map. Try to kil
 Move around the map looking for the keys but be careful with the enemies, they will attack you when you pass near them!
 <br> 
 The controls are very easy<br>
-Move with the arrows:  ➡️ ⬅️ ⬆️ ⬇️ <br>
-Shot with the spacebar: 〰
+Move with:  A W S D<br>
+Shot with the arrows:  ➡️ ⬅️ ⬆️ ⬇️ <br>
 <br>
 <br>
 Try yourself!

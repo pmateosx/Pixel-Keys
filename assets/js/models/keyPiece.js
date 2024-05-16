@@ -69,16 +69,16 @@ class keyPiece {
         const status = event.type === 'keydown'
     
         switch(event.keyCode) {
-          case KEY_UP:
+          case KEY_W:
             this.movements.up = status
             break
-          case KEY_DOWN:
+          case KEY_S:
             this.movements.down = status
             break
-          case KEY_RIGHT:
+          case KEY_D:
             this.movements.right = status
             break
-          case KEY_LEFT:
+          case KEY_A:
             this.movements.left = status
             break
           default:

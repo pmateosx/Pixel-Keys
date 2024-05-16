@@ -1,28 +1,34 @@
-body{
+@font-face {
+    font-family: "04b03b";
+    src: url("../font/04b03b.woff2") format("woff2");
+}
+
+body {
+    font-family: '04b03b', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #E3CDA8;  
+    background-color: #E3CDA8;
 }
 
 .display-on {
     display: inherit;
 }
 
-.display-off{
+.display-off {
     display: none;
 }
 
-#top-display{
+#top-display {
     position: absolute;
     top: 2%;
     width: 100%;
 }
 
-#bottom-display{
+#bottom-display {
     position: absolute;
     bottom: 2%;
     width: 100%;
@@ -30,7 +36,7 @@ body{
 
 
 /* HOME BOTTON */
-.nav-buttons{
+.nav-buttons {
     position: absolute;
     top: 4rem;
     left: 1rem;
@@ -39,32 +45,32 @@ body{
     z-index: 15;
 }
 
-#home-button{
+#home-button {
     image-rendering: pixelated;
     background: none;
     border: none;
-    outline:none;
+    outline: none;
 }
 
-#home-img:hover{ 
+#home-img:hover {
     transform: scale(1.1)
 }
 
-#sound-button{
+#sound-button {
     image-rendering: pixelated;
     background: none;
     border: none;
-    outline:none;
+    outline: none;
     margin-left: -0.2rem;
 }
 
-#sound-img:hover{ 
+#sound-img:hover {
     transform: scale(1.1)
 }
 
 
 /* INTRO SCREEN */
-.intro-screen{
+.intro-screen {
     position: absolute;
     top: 20%;
     display: flex;
@@ -73,34 +79,34 @@ body{
     align-items: center;
 }
 
-#intro-text{
+#intro-text {
     image-rendering: pixelated;
 }
 
-#game-logo{
+#game-logo {
     margin-bottom: 3rem;
     image-rendering: pixelated;
 }
 
-#start-button{
+#start-button {
     margin: 3rem;
     background: none;
     border: none;
     z-index: 10;
 }
 
-#start-img{
+#start-img {
     width: 13rem;
     image-rendering: pixelated;
 }
 
-#start-img:hover{ 
+#start-img:hover {
     transform: scale(1.1)
 }
 
 
 /* CANVAS */
-.canvas-container{
+.canvas-container {
     position: absolute;
     top: 3%;
     display: flex;
@@ -119,12 +125,20 @@ body{
 
 #movements {
     position: absolute;
-    transform: translateY(20.8rem);
+    top:0;
+    left: 0.5rem;
+    transform: translateY(4rem);
+}
+#movements2 {
+    position: absolute;
+    top:0;
+    left: 0.5rem;
+    transform: translateY(15rem);
 }
 
 
 /* WIN SCREEN */
-.win-container{
+.win-container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -134,13 +148,13 @@ body{
     z-index: 10;
 }
 
-#win-screen{
+#win-screen {
     width: 800px;
     image-rendering: pixelated;
     z-index: 11;
 }
 
-.win-form{
+.win-form {
     position: absolute;
     display: flex;
     align-items: flex-start;
@@ -150,18 +164,18 @@ body{
     z-index: 11;
 }
 
-#send-button{
+#send-button {
     background: none;
     border: none;
     height: 2.3rem;
     z-index: 11;
 }
 
-#send-button:hover{ 
+#send-button:hover {
     transform: scale(1.1)
 }
 
-#name-input{
+#name-input {
     z-index: 10;
     background: #EFE5DA;
     border: 1px solid #433229;
@@ -175,7 +189,7 @@ body{
 }
 
 /* GAME OVER SCREEN */
-.game-over-container{
+.game-over-container {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -183,12 +197,12 @@ body{
     z-index: 2;
 }
 
-#game-over{
+#game-over {
     width: 859px;
     image-rendering: pixelated;
 }
 
-#game-over-button{
+#game-over-button {
     position: absolute;
     z-index: 100;
     background: none;
@@ -197,20 +211,20 @@ body{
     transform: translateX(25.5rem);
 }
 
-#game-over-img-button{
+#game-over-img-button {
     z-index: 100;
     margin-top: 1rem;
     height: 2.5rem;
 }
 
-#game-over-img-button:hover{ 
+#game-over-img-button:hover {
     transform: scale(1.1)
 }
 
 
 /* DIPLOMA */
-.diplima{
-    position: absolute; 
+.diplima {
+    position: absolute;
     top: 7%;
     z-index: 5;
     display: flex;
@@ -218,12 +232,12 @@ body{
     align-items: center;
 }
 
-#diploma{
+#diploma {
     width: 69rem;
     image-rendering: pixelated;
 }
 
-#name{
+#name {
     position: absolute;
     transform: translateY(-6.9rem);
     z-index: 15;
@@ -232,3 +246,18 @@ body{
     font-family: monospace;
     text-align: center;
 }
+
+.instructions {
+    table {
+    }
+}
+  th, td {
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left;
+    color: #463127;
+  }
+  th {
+    background-color: #463127;
+    color: #F1DBBC;
+  }
